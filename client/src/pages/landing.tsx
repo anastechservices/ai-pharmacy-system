@@ -296,99 +296,159 @@ function Navbar() {
 
 function HeroSection() {
   const { t } = useLanguage();
+
+  const stats = [
+    { value: "500+", label: t("hero.clientsPharmacies") },
+    { value: "50+", label: t("hero.clientsCities") },
+    { value: "99%", label: t("hero.clientsSatisfaction") },
+  ];
+
   return (
-    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 bg-white overflow-hidden">
-      <div className="absolute top-24 left-[8%] w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 rotate-12 opacity-80 flex items-center justify-center shadow-lg shadow-emerald-500/20" aria-hidden="true">
-        <Pill className="h-6 w-6 text-white -rotate-12" />
-      </div>
-      <div className="absolute top-32 right-[10%] w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-violet-400 to-violet-600 -rotate-6 opacity-80 flex items-center justify-center shadow-lg shadow-violet-500/20" aria-hidden="true">
-        <BarChart3 className="h-5 w-5 text-white rotate-6" />
-      </div>
-      <div className="absolute bottom-[35%] left-[5%] w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 rotate-6 opacity-70 flex items-center justify-center shadow-lg shadow-blue-500/20 hidden sm:flex" aria-hidden="true">
-        <PackageSearch className="h-4 w-4 text-white -rotate-6" />
-      </div>
-      <div className="absolute bottom-[40%] right-[6%] w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 -rotate-12 opacity-75 flex items-center justify-center shadow-lg shadow-orange-500/20 hidden sm:flex" aria-hidden="true">
-        <Zap className="h-5 w-5 text-white rotate-12" />
+    <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-50/90 via-white to-emerald-50/40" />
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-16 left-[5%] w-80 h-80 bg-purple-300/20 rounded-full blur-[100px]"
+        />
+        <motion.div
+          animate={{ x: [0, -25, 0], y: [0, 25, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-10 right-[5%] w-96 h-96 bg-emerald-300/20 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-violet-200/15 rounded-full blur-[130px]"
+        />
       </div>
 
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[
+          { top: "12%", left: "8%", delay: 0, size: "w-3 h-3" },
+          { top: "20%", left: "85%", delay: 1.5, size: "w-2 h-2" },
+          { top: "55%", left: "12%", delay: 3, size: "w-2.5 h-2.5" },
+          { top: "65%", left: "90%", delay: 0.8, size: "w-2 h-2" },
+          { top: "35%", left: "92%", delay: 2.2, size: "w-3 h-3" },
+          { top: "80%", left: "20%", delay: 4, size: "w-2 h-2" },
+        ].map((dot, i) => (
+          <motion.div
+            key={i}
+            className={`absolute ${dot.size} rounded-full bg-gradient-to-br from-purple-400/30 to-emerald-400/30`}
+            style={{ top: dot.top, left: dot.left }}
+            animate={{ y: [0, -15, 0], opacity: [0.3, 0.7, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: dot.delay }}
+          />
+        ))}
+      </div>
+
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div initial="hidden" animate="visible" variants={staggerSlow}>
-          <motion.div variants={fadeInUp} className="mb-8 flex items-center justify-center">
-            <div className="inline-flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-full px-4 py-2" data-testid="hero-trust-badge">
-              <div className="flex -space-x-2">
-                <div className="w-7 h-7 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center">
-                  <Pill className="h-3 w-3 text-white" />
-                </div>
-                <div className="w-7 h-7 rounded-full bg-violet-500 border-2 border-white flex items-center justify-center">
-                  <Star className="h-3 w-3 text-white" />
-                </div>
-                <div className="w-7 h-7 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center">
-                  <Heart className="h-3 w-3 text-white" />
-                </div>
-              </div>
-              <span className="text-sm font-semibold text-gray-700">{t("hero.badge")}</span>
-            </div>
+          <motion.div variants={fadeInUp} className="mb-6">
+            <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200/60 shadow-sm shadow-purple-500/5">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+              <span className="text-sm font-semibold bg-gradient-to-r from-purple-700 to-emerald-600 bg-clip-text text-transparent">
+                {t("hero.badge")}
+              </span>
+            </span>
           </motion.div>
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-extrabold tracking-tight leading-[1.1] mb-6 text-gray-900"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.08] mb-7"
           >
-            {t("hero.title1")}
+            <span className="text-gray-900">{t("hero.title1")}</span>
             <br />
-            {t("hero.title2")}
+            <span className="relative">
+              <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-emerald-500 bg-clip-text text-transparent">
+                {t("hero.title2")}
+              </span>
+              <motion.svg
+                className="absolute -bottom-2 left-0 w-full"
+                viewBox="0 0 300 12"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+              >
+                <motion.path
+                  d="M2 8 C50 2, 100 2, 150 6 S250 10, 298 4"
+                  stroke="url(#hero-underline)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  fill="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+                />
+                <defs>
+                  <linearGradient id="hero-underline" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#9333ea" />
+                    <stop offset="1" stopColor="#10b981" />
+                  </linearGradient>
+                </defs>
+              </motion.svg>
+            </span>
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed"
+            className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             {t("hero.subtitle")}
           </motion.p>
 
-          <motion.div variants={fadeInUp} className="flex flex-col items-center gap-3 mb-6">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <WhatsAppCTA size="lg" text={t("hero.bookDemo")} message="Hi, I'm interested in the AI Pharmacy System.
 I'd like to book a free demo.
 Please share the details." />
-            <div className="flex items-center gap-2 text-sm text-gray-400" data-testid="hero-note">
-              <Shield className="h-4 w-4" />
-              <span>{t("hero.secureCloud")}</span>
-            </div>
+            <Button asChild size="lg" variant="outline" className="gap-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-all" data-testid="button-watch-demo">
+              <a href="#video">
+                <Play className="h-4 w-4" />
+                {t("hero.watchDemo")}
+              </a>
+            </Button>
+          </motion.div>
+
+          <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-14">
+            {[
+              { icon: GraduationCap, text: t("hero.freeTraining") },
+              { icon: Headphones, text: t("hero.freeSupport") },
+              { icon: Smartphone, text: t("hero.worksOnMobile") },
+              { icon: Shield, text: t("hero.secureCloud") },
+            ].map((item) => (
+              <div key={item.text} className="flex items-center gap-2 text-sm text-gray-600">
+                <CircleCheck className="h-4 w-4 text-emerald-500 shrink-0" />
+                {item.text}
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            variants={fadeInUp}
+            className="grid grid-cols-3 gap-4 sm:gap-8 max-w-md mx-auto"
+          >
+            {stats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                className="relative text-center px-3 py-4 sm:py-5 rounded-2xl bg-white/70 backdrop-blur-sm border border-gray-100 shadow-sm"
+                whileHover={{ y: -4, boxShadow: "0 8px 30px rgba(147,51,234,0.08)" }}
+                transition={{ duration: 0.25 }}
+                data-testid={`stat-${i}`}
+              >
+                <div className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-br from-purple-600 to-emerald-500 bg-clip-text text-transparent mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-xs sm:text-sm font-medium text-gray-500">{stat.label}</div>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-        className="relative max-w-5xl mx-auto mt-10 sm:mt-16 px-4 sm:px-6 lg:px-8"
-      >
-        <div className="rounded-2xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/60 overflow-hidden p-1" data-testid="hero-dashboard-preview">
-          <div className="rounded-xl bg-gradient-to-b from-gray-50 to-white p-6 sm:p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <img src={atsLogoPath} alt="Anas Tech Services" className="h-8 w-8 rounded-md object-contain" />
-              <span className="font-bold text-gray-800 text-sm">AI Pharmacy Dashboard</span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-              {[
-                { label: t("hero.freeTraining"), value: "100%", sub: "Free", icon: GraduationCap, color: "text-emerald-600 bg-emerald-50" },
-                { label: t("hero.freeSupport"), value: "24/7", sub: "Available", icon: Headphones, color: "text-violet-600 bg-violet-50" },
-                { label: t("hero.worksOnMobile"), value: "All", sub: "Devices", icon: Smartphone, color: "text-blue-600 bg-blue-50" },
-                { label: t("hero.secureCloud"), value: "SSL", sub: "Encrypted", icon: Shield, color: "text-orange-600 bg-orange-50" },
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-xl border border-gray-100 bg-white p-4 text-center" data-testid={`hero-stat-${stat.label}`}>
-                  <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg ${stat.color} mb-2`}>
-                    <stat.icon className="h-4 w-4" />
-                  </div>
-                  <div className="text-xl sm:text-2xl font-bold text-gray-900">{stat.value}</div>
-                  <div className="text-[11px] text-gray-400 mt-0.5">{stat.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
 
       <ClientsMarquee />
     </section>
