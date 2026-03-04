@@ -2150,91 +2150,219 @@ function FAQSection() {
 function ShowcaseSection() {
   const { t } = useLanguage();
 
-  const features = [
-    { title: "POS Billing", icon: Zap, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
-    { title: "Smart Inventory", icon: PackageSearch, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
-    { title: "WhatsApp Marketing", icon: MessageSquare, color: "text-green-600", bg: "bg-green-50", border: "border-green-100" },
-    { title: "Sales Analytics", icon: BarChart3, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100" },
-    { title: "Expiry Alerts", icon: Bell, color: "text-rose-600", bg: "bg-rose-50", border: "border-rose-100" },
-    { title: "Staff Management", icon: Users, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-100" },
-    { title: "AI Insights", icon: Brain, color: "text-fuchsia-600", bg: "bg-fuchsia-50", border: "border-fuchsia-100" },
-    { title: "Cloud Access", icon: Cloud, color: "text-cyan-600", bg: "bg-cyan-50", border: "border-cyan-100" },
-    { title: "Supplier Hub", icon: Truck, color: "text-violet-600", bg: "bg-violet-50", border: "border-violet-100" },
-    { title: "Mobile App", icon: Smartphone, color: "text-teal-600", bg: "bg-teal-50", border: "border-teal-100" },
-    { title: "Profit Reports", icon: TrendingUp, color: "text-indigo-600", bg: "bg-indigo-50", border: "border-indigo-100" },
-    { title: "Secure Access", icon: Lock, color: "text-gray-600", bg: "bg-gray-50", border: "border-gray-200" },
+  const modules = [
+    { title: "POS Billing", desc: "Fast checkout & invoicing", icon: Zap, gradient: "from-purple-600 to-indigo-600" },
+    { title: "Smart Inventory", desc: "AI stock management", icon: PackageSearch, gradient: "from-emerald-600 to-teal-600" },
+    { title: "WhatsApp Marketing", desc: "Automated campaigns", icon: MessageSquare, gradient: "from-green-600 to-emerald-600" },
+    { title: "Sales Analytics", desc: "Real-time profit data", icon: BarChart3, gradient: "from-blue-600 to-indigo-600" },
+    { title: "Expiry Alerts", desc: "Auto expiry tracking", icon: Bell, gradient: "from-rose-500 to-red-600" },
+    { title: "Staff Management", desc: "Roles & access control", icon: Users, gradient: "from-amber-500 to-orange-600" },
   ];
 
-  const row1 = features.slice(0, 6);
-  const row2 = features.slice(6, 12);
+  const modules2 = [
+    { title: "AI Insights", desc: "Smart business growth", icon: Brain, gradient: "from-fuchsia-600 to-purple-600" },
+    { title: "Cloud Dashboard", desc: "Access from anywhere", icon: Cloud, gradient: "from-cyan-600 to-blue-600" },
+    { title: "Supplier Hub", desc: "Vendor & purchase logs", icon: Truck, gradient: "from-violet-600 to-purple-600" },
+    { title: "Mobile App", desc: "Manage on the go", icon: Smartphone, gradient: "from-teal-600 to-emerald-600" },
+    { title: "Profit Reports", desc: "Detailed financials", icon: TrendingUp, gradient: "from-indigo-600 to-blue-600" },
+    { title: "Secure Login", desc: "Encrypted protection", icon: Lock, gradient: "from-gray-600 to-slate-700" },
+  ];
 
-  const FeatureCard = ({ feature, index }: { feature: typeof features[0]; index: number }) => (
-    <div
-      className={`shrink-0 w-[220px] sm:w-[260px] rounded-xl border ${feature.border} bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300`}
+  const ModuleCard = ({ mod, index }: { mod: typeof modules[0]; index: number }) => (
+    <motion.div
+      className="shrink-0 w-[280px] sm:w-[320px]"
       data-testid={`showcase-card-${index}`}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.25 }}
     >
-      <div className={`h-10 w-10 rounded-lg ${feature.bg} flex items-center justify-center mb-4`}>
-        <feature.icon className={`h-5 w-5 ${feature.color}`} />
+      <div className="bg-white rounded-2xl border border-gray-200/80 p-6 shadow-sm hover:shadow-lg transition-shadow duration-400 h-full">
+        <div className="flex items-start gap-4">
+          <div className={`h-12 w-12 rounded-xl bg-gradient-to-br ${mod.gradient} flex items-center justify-center shrink-0 shadow-md`}>
+            <mod.icon className="h-6 w-6 text-white" />
+          </div>
+          <div className="min-w-0">
+            <h4 className="font-bold text-gray-900 text-[15px] leading-snug">{mod.title}</h4>
+            <p className="text-gray-500 text-sm mt-1 leading-relaxed">{mod.desc}</p>
+          </div>
+        </div>
       </div>
-      <p className="font-semibold text-sm text-gray-900">{feature.title}</p>
-      <p className="text-xs text-gray-500 mt-1">AI Pharmacy System</p>
-    </div>
+    </motion.div>
   );
 
+  const floatAnimation = {
+    y: [0, -12, 0],
+    transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+  };
+  const floatAnimationSlow = {
+    y: [0, -8, 0],
+    transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
+  };
+  const floatAnimationFast = {
+    y: [0, -15, 0],
+    transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+  };
+
   return (
-    <section className="relative overflow-hidden bg-gray-50/50 border-t border-gray-100" data-testid="showcase-section">
-      <div className="text-center pt-16 sm:pt-24 pb-10 sm:pb-14 px-4 sm:px-6">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={staggerSlow}
-        >
-          <motion.h2
-            variants={fadeInUp}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 mb-4"
-          >
-            {t("showcase.title")}
-          </motion.h2>
+    <section className="relative overflow-hidden bg-white" data-testid="showcase-section">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
-          <motion.p
-            variants={fadeInUp}
-            className="text-sm sm:text-base text-gray-500 max-w-md mx-auto leading-relaxed"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-14 sm:pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerSlow}
           >
-            {t("showcase.subtitle")}
-          </motion.p>
-        </motion.div>
-      </div>
+            <motion.div variants={fadeInUp} className="mb-5">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/5 border border-primary/10">
+                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                <span className="text-xs font-semibold text-primary tracking-wide">{t("showcase.badge")}</span>
+              </span>
+            </motion.div>
 
-      <div className="relative overflow-hidden mb-4">
-        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-gray-50/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-gray-50/80 to-transparent z-10 pointer-events-none" />
-        <div className="flex animate-marquee gap-4 py-2 will-change-transform">
-          {[...row1, ...row1, ...row1].map((feature, i) => (
-            <FeatureCard key={`r1-${i}`} feature={feature} index={i} />
-          ))}
+            <motion.h2
+              variants={fadeInUp}
+              className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight text-gray-900 leading-[1.15] mb-5"
+            >
+              {t("showcase.title")}
+            </motion.h2>
+
+            <motion.p
+              variants={fadeInUp}
+              className="text-base sm:text-lg text-gray-500 leading-relaxed mb-8 max-w-lg"
+            >
+              {t("showcase.subtitle")}
+            </motion.p>
+
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3">
+              <WhatsAppCTA size="lg" text={t("showcase.cta")} message="Hi, I saw the AI Pharmacy System.\nI'd like to book a free demo.\nPlease share the details." />
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="mt-8 flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                </div>
+                <span className="text-sm text-gray-600 font-medium">{t("showcase.check1")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                </div>
+                <span className="text-sm text-gray-600 font-medium">{t("showcase.check2")}</span>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            <div className="absolute -top-8 -right-8 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute -bottom-8 -left-8 w-56 h-56 bg-emerald-500/5 rounded-full blur-3xl" />
+
+            <div className="relative">
+              <motion.div animate={floatAnimation} className="absolute -top-4 left-4 z-10">
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 w-[200px]">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center">
+                      <BarChart3 className="h-4.5 w-4.5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-900">Sales Today</p>
+                      <p className="text-[11px] text-gray-400">Real-time</p>
+                    </div>
+                  </div>
+                  <p className="text-2xl font-extrabold text-gray-900">PKR 84,250</p>
+                  <div className="flex items-center gap-1 mt-1">
+                    <TrendingUp className="h-3 w-3 text-emerald-600" />
+                    <span className="text-xs text-emerald-600 font-semibold">+18.2%</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div animate={floatAnimationSlow} className="absolute top-16 right-0 z-10">
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 w-[190px]">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
+                      <PackageSearch className="h-4.5 w-4.5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-900">Stock Alert</p>
+                      <p className="text-[11px] text-gray-400">Low inventory</p>
+                    </div>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-500">Panadol</span>
+                      <span className="text-rose-600 font-semibold">12 left</span>
+                    </div>
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-500">Brufen</span>
+                      <span className="text-amber-600 font-semibold">28 left</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div animate={floatAnimationFast} className="absolute bottom-8 left-8 z-10">
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 w-[210px]">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center">
+                      <SiWhatsapp className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-900">WhatsApp Sent</p>
+                      <p className="text-[11px] text-gray-400">Auto campaign</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-extrabold text-gray-900">1,247</span>
+                    <span className="text-[10px] bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">Messages</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl border border-gray-200/60 p-8 min-h-[380px] flex items-center justify-center">
+                <div className="text-center">
+                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary to-purple-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20">
+                    <Brain className="h-8 w-8 text-white" />
+                  </div>
+                  <p className="text-lg font-bold text-gray-900 mb-1">AI Pharmacy System</p>
+                  <p className="text-sm text-gray-400">Powered by Anas Tech Services</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="relative overflow-hidden">
-        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-gray-50/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-gray-50/80 to-transparent z-10 pointer-events-none" />
-        <div className="flex animate-marquee-reverse gap-4 py-2 will-change-transform">
-          {[...row2, ...row2, ...row2].map((feature, i) => (
-            <FeatureCard key={`r2-${i}`} feature={feature} index={i} />
-          ))}
-        </div>
-      </div>
+      <div className="border-t border-gray-100 bg-gray-50/30">
+        <div className="py-10 sm:py-14">
+          <div className="relative overflow-hidden mb-5">
+            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-gray-50/90 via-gray-50/60 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-gray-50/90 via-gray-50/60 to-transparent z-10 pointer-events-none" />
+            <div className="flex animate-marquee gap-5 py-2 will-change-transform">
+              {[...modules, ...modules, ...modules].map((mod, i) => (
+                <ModuleCard key={`r1-${i}`} mod={mod} index={i} />
+              ))}
+            </div>
+          </div>
 
-      <div className="text-center py-12 sm:py-16 px-4">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-        >
-          <WhatsAppCTA size="lg" text={t("showcase.cta")} message="Hi, I saw the AI Pharmacy System.\nI'd like to book a free demo.\nPlease share the details." />
-        </motion.div>
+          <div className="relative overflow-hidden">
+            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-gray-50/90 via-gray-50/60 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-gray-50/90 via-gray-50/60 to-transparent z-10 pointer-events-none" />
+            <div className="flex animate-marquee-reverse gap-5 py-2 will-change-transform">
+              {[...modules2, ...modules2, ...modules2].map((mod, i) => (
+                <ModuleCard key={`r2-${i}`} mod={mod} index={i} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
