@@ -348,9 +348,12 @@ const translations: Record<Lang, Record<string, string>> = {
     "faq.q7": "How long does setup take?",
     "faq.a7": "Setup completes in 24-48 hours. Our team handles full installation, configuration, and training. You don't need any technical knowledge.",
 
-    "showcase.title": "See It in Action",
-    "showcase.subtitle": "Experience our AI-Powered Pharmacy System. Book a free demo and let us help you transform your pharmacy business.",
+    "showcase.badge": "See It In Action",
+    "showcase.title": "Everything Your Pharmacy Needs, In One System",
+    "showcase.subtitle": "From billing to AI insights — manage your entire pharmacy with one powerful, easy-to-use platform built for Pakistani pharmacies.",
     "showcase.cta": "Book Free Demo",
+    "showcase.check1": "Free Setup",
+    "showcase.check2": "24/7 Support",
 
     "footer.smartPharmacy": "Start Your Smart Pharmacy Today.",
     "footer.chatWithUs": "Chat with Us",
@@ -683,9 +686,12 @@ const translations: Record<Lang, Record<string, string>> = {
     "faq.q7": "Kitne time mein setup ho jata hai?",
     "faq.a7": "Setup 24-48 hours mein mukammal ho jata hai. Hamari team full installation, configuration, aur training karti hai. Aap ko koi technical knowledge ki zaroorat nahi hai.",
 
-    "showcase.title": "Live Dekhein Action Mein",
-    "showcase.subtitle": "Hamara AI-Powered Pharmacy System experience karein. Free demo book karein aur apni pharmacy business ko transform karein.",
+    "showcase.badge": "Live Dekhein",
+    "showcase.title": "Aapki Pharmacy Ka Sab Kuch, Ek System Mein",
+    "showcase.subtitle": "Billing se AI insights tak — apni poori pharmacy ko ek powerful aur asaan platform se manage karein jo Pakistani pharmacies ke liye bana hai.",
     "showcase.cta": "Free Demo Book Karein",
+    "showcase.check1": "Free Setup",
+    "showcase.check2": "24/7 Support",
 
     "footer.smartPharmacy": "Apni Smart Pharmacy Aaj Shuru Karein.",
     "footer.chatWithUs": "Hum Se Baat Karein",
