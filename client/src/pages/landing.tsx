@@ -2189,156 +2189,57 @@ function ShowcaseSection() {
     </motion.div>
   );
 
-  const floatAnimation = {
-    y: [0, -12, 0],
-    transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-  };
-  const floatAnimationSlow = {
-    y: [0, -8, 0],
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-  };
-  const floatAnimationFast = {
-    y: [0, -15, 0],
-    transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
-  };
-
   return (
     <section className="relative overflow-hidden bg-white" data-testid="showcase-section">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-14 sm:pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={staggerSlow}
-          >
-            <motion.div variants={fadeInUp} className="mb-5">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/5 border border-primary/10">
-                <Sparkles className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs font-semibold text-primary tracking-wide">{t("showcase.badge")}</span>
-              </span>
-            </motion.div>
-
-            <motion.h2
-              variants={fadeInUp}
-              className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight text-gray-900 leading-[1.15] mb-5"
-            >
-              {t("showcase.title")}
-            </motion.h2>
-
-            <motion.p
-              variants={fadeInUp}
-              className="text-base sm:text-lg text-gray-500 leading-relaxed mb-8 max-w-lg"
-            >
-              {t("showcase.subtitle")}
-            </motion.p>
-
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3">
-              <WhatsAppCTA size="lg" text={t("showcase.cta")} message="Hi, I saw the AI Pharmacy System.\nI'd like to book a free demo.\nPlease share the details." />
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="mt-8 flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-emerald-50 flex items-center justify-center">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                </div>
-                <span className="text-sm text-gray-600 font-medium">{t("showcase.check1")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-emerald-50 flex items-center justify-center">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                </div>
-                <span className="text-sm text-gray-600 font-medium">{t("showcase.check2")}</span>
-              </div>
-            </motion.div>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-14 sm:pb-20 text-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={staggerSlow}
+        >
+          <motion.div variants={fadeInUp} className="mb-5">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/5 border border-primary/10">
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              <span className="text-xs font-semibold text-primary tracking-wide">{t("showcase.badge")}</span>
+            </span>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden lg:block"
+          <motion.h2
+            variants={fadeInUp}
+            className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight text-gray-900 leading-[1.15] mb-5"
           >
-            <div className="absolute -top-8 -right-8 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-            <div className="absolute -bottom-8 -left-8 w-56 h-56 bg-emerald-500/5 rounded-full blur-3xl" />
+            {t("showcase.title")}
+          </motion.h2>
 
-            <div className="relative">
-              <motion.div animate={floatAnimation} className="absolute -top-4 left-4 z-10">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 w-[200px]">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center">
-                      <BarChart3 className="h-4.5 w-4.5 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-gray-900">Sales Today</p>
-                      <p className="text-[11px] text-gray-400">Real-time</p>
-                    </div>
-                  </div>
-                  <p className="text-2xl font-extrabold text-gray-900">PKR 84,250</p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <TrendingUp className="h-3 w-3 text-emerald-600" />
-                    <span className="text-xs text-emerald-600 font-semibold">+18.2%</span>
-                  </div>
-                </div>
-              </motion.div>
+          <motion.p
+            variants={fadeInUp}
+            className="text-base sm:text-lg text-gray-500 leading-relaxed mb-8 max-w-xl mx-auto"
+          >
+            {t("showcase.subtitle")}
+          </motion.p>
 
-              <motion.div animate={floatAnimationSlow} className="absolute top-16 right-0 z-10">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 w-[190px]">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
-                      <PackageSearch className="h-4.5 w-4.5 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-gray-900">Stock Alert</p>
-                      <p className="text-[11px] text-gray-400">Low inventory</p>
-                    </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs">
-                      <span className="text-gray-500">Panadol</span>
-                      <span className="text-rose-600 font-semibold">12 left</span>
-                    </div>
-                    <div className="flex justify-between text-xs">
-                      <span className="text-gray-500">Brufen</span>
-                      <span className="text-amber-600 font-semibold">28 left</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+          <motion.div variants={fadeInUp} className="flex justify-center">
+            <WhatsAppCTA size="lg" text={t("showcase.cta")} message="Hi, I saw the AI Pharmacy System.\nI'd like to book a free demo.\nPlease share the details." />
+          </motion.div>
 
-              <motion.div animate={floatAnimationFast} className="absolute bottom-8 left-8 z-10">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 w-[210px]">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center">
-                      <SiWhatsapp className="h-4 w-4 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-gray-900">WhatsApp Sent</p>
-                      <p className="text-[11px] text-gray-400">Auto campaign</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-extrabold text-gray-900">1,247</span>
-                    <span className="text-[10px] bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded-full">Messages</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl border border-gray-200/60 p-8 min-h-[380px] flex items-center justify-center">
-                <div className="text-center">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary to-purple-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20">
-                    <Brain className="h-8 w-8 text-white" />
-                  </div>
-                  <p className="text-lg font-bold text-gray-900 mb-1">AI Pharmacy System</p>
-                  <p className="text-sm text-gray-400">Powered by Anas Tech Services</p>
-                </div>
+          <motion.div variants={fadeInUp} className="mt-8 flex items-center justify-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
               </div>
+              <span className="text-sm text-gray-600 font-medium">{t("showcase.check1")}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-full bg-emerald-50 flex items-center justify-center">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+              </div>
+              <span className="text-sm text-gray-600 font-medium">{t("showcase.check2")}</span>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="border-t border-gray-100 bg-gray-50/30">
