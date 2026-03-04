@@ -348,6 +348,10 @@ const translations: Record<Lang, Record<string, string>> = {
     "faq.q7": "How long does setup take?",
     "faq.a7": "Setup completes in 24-48 hours. Our team handles full installation, configuration, and training. You don't need any technical knowledge.",
 
+    "showcase.title": "See It in Action",
+    "showcase.subtitle": "Experience our AI-Powered Pharmacy System. Book a free demo and let us help you transform your pharmacy business.",
+    "showcase.cta": "Book Free Demo",
+
     "footer.smartPharmacy": "Start Your Smart Pharmacy Today.",
     "footer.chatWithUs": "Chat with Us",
     "footer.quickLinks": "Quick Links",
@@ -678,6 +682,10 @@ const translations: Record<Lang, Record<string, string>> = {
     "faq.a6": "System cloud-based hai, lekin basic billing offline bhi kaam karti hai. Jab internet wapas aaye ga, data automatically sync ho jaye ga. Premium plan mein full offline support shamil hai.",
     "faq.q7": "Kitne time mein setup ho jata hai?",
     "faq.a7": "Setup 24-48 hours mein mukammal ho jata hai. Hamari team full installation, configuration, aur training karti hai. Aap ko koi technical knowledge ki zaroorat nahi hai.",
+
+    "showcase.title": "Live Dekhein Action Mein",
+    "showcase.subtitle": "Hamara AI-Powered Pharmacy System experience karein. Free demo book karein aur apni pharmacy business ko transform karein.",
+    "showcase.cta": "Free Demo Book Karein",
 
     "footer.smartPharmacy": "Apni Smart Pharmacy Aaj Shuru Karein.",
     "footer.chatWithUs": "Hum Se Baat Karein",
