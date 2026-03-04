@@ -360,7 +360,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "footer.quickLinks": "Quick Links",
     "footer.contact": "Contact",
     "footer.whatsapp": "WhatsApp",
-    "footer.copyright": "2024 Anas Tech Services. All rights reserved.",
+    "footer.copyright": "2026 Anas Tech Services. All rights reserved.",
 
     "chatbot.title": "AI Pharmacy Assistant",
     "chatbot.status": "Online • Pricing • Features • Advice",
@@ -698,7 +698,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "footer.quickLinks": "Quick Links",
     "footer.contact": "Rabta",
     "footer.whatsapp": "WhatsApp",
-    "footer.copyright": "2024 Anas Tech Services. Tamam huqooq mehfooz hain.",
+    "footer.copyright": "2026 Anas Tech Services. Tamam huqooq mehfooz hain.",
 
     "chatbot.title": "AI Pharmacy Assistant",
     "chatbot.status": "Online • Qeemat • Features • Mashwara",
