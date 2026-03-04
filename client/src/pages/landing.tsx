@@ -2150,148 +2150,91 @@ function FAQSection() {
 function ShowcaseSection() {
   const { t } = useLanguage();
 
-  const screens = [
-    { title: "POS Billing", desc: "Lightning-fast checkout", gradient: "from-violet-600 via-purple-600 to-indigo-700", icon: Zap, accent: "violet" },
-    { title: "Smart Inventory", desc: "AI-powered stock tracking", gradient: "from-emerald-500 via-teal-600 to-cyan-700", icon: PackageSearch, accent: "emerald" },
-    { title: "WhatsApp Marketing", desc: "Automated campaigns", gradient: "from-green-500 via-emerald-600 to-teal-700", icon: MessageSquare, accent: "green" },
-    { title: "Sales Analytics", desc: "Real-time profit insights", gradient: "from-blue-500 via-indigo-600 to-violet-700", icon: BarChart3, accent: "blue" },
-    { title: "Expiry Alerts", desc: "Never miss an expiry", gradient: "from-rose-500 via-red-500 to-orange-600", icon: Bell, accent: "rose" },
-    { title: "Staff Control", desc: "Access & role management", gradient: "from-amber-500 via-orange-500 to-red-500", icon: Users, accent: "amber" },
+  const features = [
+    { title: "POS Billing", icon: Zap, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
+    { title: "Smart Inventory", icon: PackageSearch, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+    { title: "WhatsApp Marketing", icon: MessageSquare, color: "text-green-600", bg: "bg-green-50", border: "border-green-100" },
+    { title: "Sales Analytics", icon: BarChart3, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100" },
+    { title: "Expiry Alerts", icon: Bell, color: "text-rose-600", bg: "bg-rose-50", border: "border-rose-100" },
+    { title: "Staff Management", icon: Users, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-100" },
+    { title: "AI Insights", icon: Brain, color: "text-fuchsia-600", bg: "bg-fuchsia-50", border: "border-fuchsia-100" },
+    { title: "Cloud Access", icon: Cloud, color: "text-cyan-600", bg: "bg-cyan-50", border: "border-cyan-100" },
+    { title: "Supplier Hub", icon: Truck, color: "text-violet-600", bg: "bg-violet-50", border: "border-violet-100" },
+    { title: "Mobile App", icon: Smartphone, color: "text-teal-600", bg: "bg-teal-50", border: "border-teal-100" },
+    { title: "Profit Reports", icon: TrendingUp, color: "text-indigo-600", bg: "bg-indigo-50", border: "border-indigo-100" },
+    { title: "Secure Access", icon: Lock, color: "text-gray-600", bg: "bg-gray-50", border: "border-gray-200" },
   ];
 
-  const screens2 = [
-    { title: "AI Insights", desc: "Smart growth suggestions", gradient: "from-fuchsia-500 via-purple-600 to-violet-700", icon: Brain, accent: "fuchsia" },
-    { title: "Cloud Access", desc: "Manage from anywhere", gradient: "from-cyan-500 via-blue-600 to-indigo-700", icon: Cloud, accent: "cyan" },
-    { title: "Supplier Hub", desc: "Vendor & purchase records", gradient: "from-purple-500 via-violet-600 to-indigo-700", icon: Truck, accent: "purple" },
-    { title: "Mobile App", desc: "Full control on phone", gradient: "from-teal-500 via-emerald-500 to-green-600", icon: Smartphone, accent: "teal" },
-    { title: "Profit Reports", desc: "Detailed financial overview", gradient: "from-indigo-500 via-blue-600 to-cyan-700", icon: TrendingUp, accent: "indigo" },
-    { title: "Secure Access", desc: "Encrypted login system", gradient: "from-slate-600 via-gray-700 to-zinc-800", icon: Lock, accent: "slate" },
-  ];
+  const row1 = features.slice(0, 6);
+  const row2 = features.slice(6, 12);
 
-  const ScreenCard = ({ screen, index }: { screen: typeof screens[0]; index: number }) => (
+  const FeatureCard = ({ feature, index }: { feature: typeof features[0]; index: number }) => (
     <div
-      className="shrink-0 w-[300px] sm:w-[370px] rounded-2xl overflow-hidden relative group transition-transform duration-500 hover:scale-[1.03]"
+      className={`shrink-0 w-[220px] sm:w-[260px] rounded-xl border ${feature.border} bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300`}
       data-testid={`showcase-card-${index}`}
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${screen.gradient}`} />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-white/5" />
-
-      <div className="relative p-6 sm:p-7 h-[200px] sm:h-[240px] flex flex-col">
-        <div className="flex items-center justify-between mb-auto">
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-white/20 backdrop-blur-sm" />
-            <div className="w-3 h-3 rounded-full bg-white/20 backdrop-blur-sm" />
-            <div className="w-3 h-3 rounded-full bg-white/20 backdrop-blur-sm" />
-          </div>
-          <div className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm">
-            <span className="text-[10px] text-white/70 font-medium tracking-wider uppercase">Live</span>
-          </div>
-        </div>
-
-        <div className="mt-4 space-y-3">
-          <div className="flex gap-3">
-            <div className="w-full h-8 bg-white/10 rounded-lg backdrop-blur-sm" />
-            <div className="w-2/3 h-8 bg-white/[0.07] rounded-lg" />
-          </div>
-          <div className="flex gap-2">
-            <div className="w-1/3 h-14 bg-white/[0.08] rounded-lg" />
-            <div className="w-1/3 h-14 bg-white/[0.06] rounded-lg" />
-            <div className="w-1/3 h-14 bg-white/[0.08] rounded-lg" />
-          </div>
-          <div className="w-2/3 h-3 bg-white/10 rounded-full" />
-        </div>
-
-        <div className="mt-auto pt-4 flex items-end justify-between">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <div className="h-8 w-8 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center">
-                <screen.icon className="h-4 w-4 text-white" />
-              </div>
-              <div>
-                <p className="text-white font-bold text-sm leading-tight">{screen.title}</p>
-                <p className="text-white/50 text-[11px] leading-tight">{screen.desc}</p>
-              </div>
-            </div>
-          </div>
-          <ArrowRight className="h-4 w-4 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all duration-300" />
-        </div>
+      <div className={`h-10 w-10 rounded-lg ${feature.bg} flex items-center justify-center mb-4`}>
+        <feature.icon className={`h-5 w-5 ${feature.color}`} />
       </div>
+      <p className="font-semibold text-sm text-gray-900">{feature.title}</p>
+      <p className="text-xs text-gray-500 mt-1">AI Pharmacy System</p>
     </div>
   );
 
   return (
-    <section className="relative overflow-hidden bg-gray-950" data-testid="showcase-section">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(124,58,237,0.18),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(16,185,129,0.12),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.06),transparent_70%)]" />
-
-      <div className="pt-20 sm:pt-28 pb-6">
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-gray-950 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-gray-950 to-transparent z-10 pointer-events-none" />
-          <div className="flex animate-marquee gap-5 sm:gap-6 py-3 will-change-transform">
-            {[...screens, ...screens].map((screen, i) => (
-              <ScreenCard key={`r1-${i}`} screen={screen} index={i} />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="relative z-10 text-center px-4 sm:px-6 py-12 sm:py-16">
+    <section className="relative overflow-hidden bg-gray-50/50 border-t border-gray-100" data-testid="showcase-section">
+      <div className="text-center pt-16 sm:pt-24 pb-10 sm:pb-14 px-4 sm:px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={staggerSlow}
         >
-          <motion.div variants={fadeInUp} className="mb-5">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm">
-              <Sparkles className="h-3.5 w-3.5 text-purple-400" />
-              <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">AI Pharmacy System</span>
-            </span>
-          </motion.div>
-
           <motion.h2
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight mb-6"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 mb-4"
           >
-            <span className="text-white">{t("showcase.title")}</span>
+            {t("showcase.title")}
           </motion.h2>
 
           <motion.p
             variants={fadeInUp}
-            className="text-base sm:text-lg text-gray-400 max-w-lg mx-auto mb-10 leading-relaxed"
+            className="text-sm sm:text-base text-gray-500 max-w-md mx-auto leading-relaxed"
           >
             {t("showcase.subtitle")}
           </motion.p>
-
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="bg-white text-gray-900 hover:bg-gray-50 border-0 gap-2.5 text-base font-semibold px-8 h-13 shadow-2xl shadow-white/10 hover:shadow-white/20 transition-all duration-300" data-testid="button-showcase-cta">
-              <a href={getWhatsAppLink("Hi, I saw the AI Pharmacy System showcase.\nI'd like to book a free demo.\nPlease share the details.")} target="_blank" rel="noopener noreferrer">
-                <SiWhatsapp className="h-5 w-5 text-emerald-600" />
-                {t("showcase.cta")}
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-white/15 text-white hover:bg-white/5 hover:border-white/25 gap-2 h-13 transition-all duration-300" data-testid="button-showcase-video">
-              <a href="#video">
-                <Play className="h-4 w-4" />
-                {t("hero.watchDemo")}
-              </a>
-            </Button>
-          </motion.div>
         </motion.div>
       </div>
 
-      <div className="pb-20 sm:pb-28">
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-gray-950 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-gray-950 to-transparent z-10 pointer-events-none" />
-          <div className="flex animate-marquee-reverse gap-5 sm:gap-6 py-3 will-change-transform">
-            {[...screens2, ...screens2].map((screen, i) => (
-              <ScreenCard key={`r2-${i}`} screen={screen} index={i} />
-            ))}
-          </div>
+      <div className="relative overflow-hidden mb-4">
+        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-gray-50/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-gray-50/80 to-transparent z-10 pointer-events-none" />
+        <div className="flex animate-marquee gap-4 py-2 will-change-transform">
+          {[...row1, ...row1, ...row1].map((feature, i) => (
+            <FeatureCard key={`r1-${i}`} feature={feature} index={i} />
+          ))}
         </div>
+      </div>
+
+      <div className="relative overflow-hidden">
+        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-gray-50/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-gray-50/80 to-transparent z-10 pointer-events-none" />
+        <div className="flex animate-marquee-reverse gap-4 py-2 will-change-transform">
+          {[...row2, ...row2, ...row2].map((feature, i) => (
+            <FeatureCard key={`r2-${i}`} feature={feature} index={i} />
+          ))}
+        </div>
+      </div>
+
+      <div className="text-center py-12 sm:py-16 px-4">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <WhatsAppCTA size="lg" text={t("showcase.cta")} message="Hi, I saw the AI Pharmacy System.\nI'd like to book a free demo.\nPlease share the details." />
+        </motion.div>
       </div>
     </section>
   );
