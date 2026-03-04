@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { useLanguage } from "@/lib/language";
 import type { Lang } from "@/lib/language";
 import { Button } from "@/components/ui/button";
@@ -127,7 +126,7 @@ function WhatsAppCTA({ text, className = "", size = "default" as "default" | "lg
   const label = text || t("hero.bookDemo");
   const link = message ? getWhatsAppLink(message) : WHATSAPP_LINK;
   return (
-    <Button asChild size={size} className={`bg-emerald-600 dark:bg-emerald-500 text-white border-emerald-700 dark:border-emerald-400 gap-2 ${className}`} data-testid="button-book-demo">
+    <Button asChild size={size} className={`bg-emerald-600 text-white border-emerald-700 gap-2 ${className}`} data-testid="button-book-demo">
       <a href={link} target="_blank" rel="noopener noreferrer">
         <SiWhatsapp className="h-5 w-5" />
         {label}
@@ -139,7 +138,7 @@ function WhatsAppCTA({ text, className = "", size = "default" as "default" | "lg
 function LanguageSwitcher() {
   const { lang, setLang } = useLanguage();
   return (
-    <div className="flex items-center gap-1 bg-muted/60 dark:bg-muted/30 rounded-full p-0.5" data-testid="language-switcher">
+    <div className="flex items-center gap-1 bg-muted/60 rounded-full p-0.5" data-testid="language-switcher">
       <button
         onClick={() => setLang("en")}
         className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200 ${
@@ -202,7 +201,7 @@ function CountdownTimer() {
   ];
 
   return (
-    <div className="inline-flex items-center gap-1.5 sm:gap-4 p-3 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/5 via-background to-emerald-500/5 dark:from-primary/10 dark:to-emerald-500/10 border" data-testid="countdown-timer">
+    <div className="inline-flex items-center gap-1.5 sm:gap-4 p-3 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/5 via-background to-emerald-500/5 border" data-testid="countdown-timer">
       {units.map((u, i) => (
         <div key={u.label} className="flex items-center gap-1.5 sm:gap-4">
           <div className="flex flex-col items-center">
@@ -265,7 +264,7 @@ function Navbar() {
 
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
-            <ThemeToggle />
+
             <div className="hidden sm:block">
               <WhatsAppCTA text={t("nav.bookDemo")} message="Hi, I want to book a free demo of the AI Pharmacy System." />
             </div>
@@ -300,10 +299,10 @@ function HeroSection() {
   return (
     <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-emerald-500/[0.06] dark:from-primary/[0.12] dark:to-emerald-500/[0.12]" />
-        <div className="absolute top-20 left-[10%] w-72 h-72 bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-[10%] w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-emerald-500/[0.06]" />
+        <div className="absolute top-20 left-[10%] w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-[10%] w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-violet-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -395,7 +394,7 @@ function ClientsMarquee() {
           {[...pharmacies, ...pharmacies].map((name, i) => (
             <div
               key={`c-${i}`}
-              className="shrink-0 px-4 py-2 rounded-full border border-border/50 bg-muted/40 dark:bg-muted/20"
+              className="shrink-0 px-4 py-2 rounded-full border border-border/50 bg-muted/40"
               data-testid={`client-${i}`}
             >
               <span className="text-[11px] sm:text-xs font-medium text-muted-foreground whitespace-nowrap">{name}</span>
@@ -410,7 +409,7 @@ function ClientsMarquee() {
 function VideoSection() {
   const { t } = useLanguage();
   return (
-    <section id="video" className="py-14 sm:py-20 bg-muted/30 dark:bg-muted/10">
+    <section id="video" className="py-14 sm:py-20 bg-muted/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-10"
@@ -474,10 +473,10 @@ function ProblemSection() {
   ];
 
   return (
-    <section className="py-20 sm:py-28 relative overflow-hidden bg-white dark:bg-background">
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-50/80 via-white to-purple-50/50 dark:from-purple-950/10 dark:via-background dark:to-purple-950/5" />
-      <div className="absolute top-0 left-[20%] w-[500px] h-[500px] bg-purple-200/20 dark:bg-purple-600/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 right-[15%] w-[400px] h-[400px] bg-emerald-100/15 dark:bg-emerald-600/5 rounded-full blur-[130px]" />
+    <section className="py-20 sm:py-28 relative overflow-hidden bg-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-50/80 via-white to-purple-50/50" />
+      <div className="absolute top-0 left-[20%] w-[500px] h-[500px] bg-purple-200/20 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 right-[15%] w-[400px] h-[400px] bg-emerald-100/15 rounded-full blur-[130px]" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -488,7 +487,7 @@ function ProblemSection() {
           variants={stagger}
         >
           <motion.div variants={fadeInUp}>
-            <span className="inline-flex items-center gap-2 mb-6 text-xs uppercase tracking-[0.2em] font-semibold bg-purple-100 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full">
+            <span className="inline-flex items-center gap-2 mb-6 text-xs uppercase tracking-[0.2em] font-semibold bg-purple-100 border border-purple-200 text-purple-700 px-4 py-2 rounded-full">
               <AlertTriangle className="h-3.5 w-3.5" />
               {t("problem.badge")}
             </span>
@@ -496,7 +495,7 @@ function ProblemSection() {
           <motion.h2 variants={fadeInUp} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-foreground">
             {t("problem.title1")}
             <br />
-            <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-emerald-600 dark:from-purple-400 dark:via-violet-400 dark:to-emerald-400 bg-clip-text text-transparent">{t("problem.title2")}</span>
+            <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-emerald-600 bg-clip-text text-transparent">{t("problem.title2")}</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t("problem.subtitle")}
@@ -514,21 +513,21 @@ function ProblemSection() {
             <motion.div
               key={i}
               variants={fadeInUp}
-              className="group relative rounded-2xl p-6 bg-white dark:bg-white/[0.04] backdrop-blur-sm border border-purple-100 dark:border-white/[0.08] hover:border-purple-300 dark:hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5 dark:hover:bg-white/[0.07] hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              className="group relative rounded-2xl p-6 bg-white backdrop-blur-sm border border-purple-100 hover:border-purple-300:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/5:bg-white/[0.07] hover:-translate-y-2 transition-all duration-300 overflow-hidden"
               data-testid={`text-problem-${i}`}
             >
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 via-violet-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -top-6 -right-6 text-[80px] font-black text-purple-500/[0.04] dark:text-white/[0.03] leading-none select-none">{p.num}</div>
+              <div className="absolute -top-6 -right-6 text-[80px] font-black text-purple-500/[0.04] leading-none select-none">{p.num}</div>
 
               <div className="flex items-start gap-4 mb-4">
-                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-100 to-emerald-50 dark:from-purple-500/20 dark:to-emerald-500/10 border border-purple-200/60 dark:border-purple-500/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-all duration-300">
-                  <p.icon className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-100 to-emerald-50 border border-purple-200/60 flex items-center justify-center shrink-0 group-hover:scale-110 transition-all duration-300">
+                  <p.icon className="h-5 w-5 text-purple-600" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <h3 className="font-bold text-foreground text-[15px] tracking-tight">{p.title}</h3>
                   </div>
-                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/15 px-2 py-0.5 rounded-full">{p.stat}</span>
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 border border-emerald-200 px-2 py-0.5 rounded-full">{p.stat}</span>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">{p.text}</p>
@@ -543,9 +542,9 @@ function ProblemSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="inline-flex flex-col items-center gap-5 bg-gradient-to-r from-purple-50 to-emerald-50 dark:from-purple-500/10 dark:to-emerald-500/10 backdrop-blur-sm rounded-2xl border border-purple-200 dark:border-purple-500/20 px-10 py-8">
+          <div className="inline-flex flex-col items-center gap-5 bg-gradient-to-r from-purple-50 to-emerald-50 backdrop-blur-sm rounded-2xl border border-purple-200 px-10 py-8">
             <p className="text-lg sm:text-xl font-bold text-foreground">
-              {t("problem.cta1")} <span className="bg-gradient-to-r from-purple-600 to-emerald-600 dark:from-purple-400 dark:to-emerald-400 bg-clip-text text-transparent">{t("problem.cta2")}</span>
+              {t("problem.cta1")} <span className="bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent">{t("problem.cta2")}</span>
             </p>
             <WhatsAppCTA text={t("problem.ctaButton")} message="Hi, I'm facing pharmacy management challenges.
 I want to see how the AI Pharmacy System can help.
@@ -560,20 +559,20 @@ Please share more info." />
 function SolutionSection() {
   const { t } = useLanguage();
   const features = [
-    { icon: Zap, title: t("solution.f1.title"), desc: t("solution.f1.desc"), color: "from-amber-500 to-orange-500", bg: "bg-amber-50 dark:bg-amber-950/30" },
-    { icon: PackageSearch, title: t("solution.f2.title"), desc: t("solution.f2.desc"), color: "from-emerald-500 to-teal-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
-    { icon: Bell, title: t("solution.f3.title"), desc: t("solution.f3.desc"), color: "from-red-500 to-rose-500", bg: "bg-red-50 dark:bg-red-950/30" },
-    { icon: BarChart3, title: t("solution.f4.title"), desc: t("solution.f4.desc"), color: "from-violet-500 to-purple-500", bg: "bg-violet-50 dark:bg-violet-950/30" },
-    { icon: Users, title: t("solution.f5.title"), desc: t("solution.f5.desc"), color: "from-purple-500 to-violet-500", bg: "bg-purple-50 dark:bg-purple-950/30" },
-    { icon: MessageSquare, title: t("solution.f6.title"), desc: t("solution.f6.desc"), color: "from-emerald-500 to-green-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
-    { icon: Brain, title: t("solution.f7.title"), desc: t("solution.f7.desc"), color: "from-fuchsia-500 to-pink-500", bg: "bg-fuchsia-50 dark:bg-fuchsia-950/30", ai: true },
-    { icon: Cloud, title: t("solution.f8.title"), desc: t("solution.f8.desc"), color: "from-green-500 to-emerald-500", bg: "bg-green-50 dark:bg-green-950/30" },
-    { icon: Lock, title: t("solution.f9.title"), desc: t("solution.f9.desc"), color: "from-slate-600 to-slate-800", bg: "bg-slate-100 dark:bg-slate-900/30" },
-    { icon: TrendingUp, title: t("solution.f10.title"), desc: t("solution.f10.desc"), color: "from-teal-500 to-emerald-500", bg: "bg-teal-50 dark:bg-teal-950/30" },
+    { icon: Zap, title: t("solution.f1.title"), desc: t("solution.f1.desc"), color: "from-amber-500 to-orange-500", bg: "bg-amber-50" },
+    { icon: PackageSearch, title: t("solution.f2.title"), desc: t("solution.f2.desc"), color: "from-emerald-500 to-teal-500", bg: "bg-emerald-50" },
+    { icon: Bell, title: t("solution.f3.title"), desc: t("solution.f3.desc"), color: "from-red-500 to-rose-500", bg: "bg-red-50" },
+    { icon: BarChart3, title: t("solution.f4.title"), desc: t("solution.f4.desc"), color: "from-violet-500 to-purple-500", bg: "bg-violet-50" },
+    { icon: Users, title: t("solution.f5.title"), desc: t("solution.f5.desc"), color: "from-purple-500 to-violet-500", bg: "bg-purple-50" },
+    { icon: MessageSquare, title: t("solution.f6.title"), desc: t("solution.f6.desc"), color: "from-emerald-500 to-green-500", bg: "bg-emerald-50" },
+    { icon: Brain, title: t("solution.f7.title"), desc: t("solution.f7.desc"), color: "from-fuchsia-500 to-pink-500", bg: "bg-fuchsia-50", ai: true },
+    { icon: Cloud, title: t("solution.f8.title"), desc: t("solution.f8.desc"), color: "from-green-500 to-emerald-500", bg: "bg-green-50" },
+    { icon: Lock, title: t("solution.f9.title"), desc: t("solution.f9.desc"), color: "from-slate-600 to-slate-800", bg: "bg-slate-100" },
+    { icon: TrendingUp, title: t("solution.f10.title"), desc: t("solution.f10.desc"), color: "from-teal-500 to-emerald-500", bg: "bg-teal-50" },
   ];
 
   return (
-    <section id="features" className="py-20 sm:py-28 bg-gradient-to-b from-slate-50/80 to-white dark:from-slate-950/40 dark:to-background">
+    <section id="features" className="py-20 sm:py-28 bg-gradient-to-b from-slate-50/80 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
@@ -605,7 +604,7 @@ function SolutionSection() {
         >
           {features.map((f, i) => (
             <motion.div key={i} variants={fadeInUp}>
-              <div className="group relative bg-white dark:bg-card rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-full" data-testid={`text-feature-${i}`}>
+              <div className="group relative bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-full" data-testid={`text-feature-${i}`}>
                 {"ai" in f && f.ai && (
                   <div className="absolute -top-2.5 right-3">
                     <span className="text-[8px] font-bold text-white bg-gradient-to-r from-fuchsia-500 to-pink-500 px-2 py-0.5 rounded-full shadow-sm">
@@ -652,9 +651,9 @@ function WhatsAppPhoneMockup() {
 
   return (
     <div className="relative mx-auto w-[280px] sm:w-[300px]" data-testid="whatsapp-phone-mockup">
-      <div className="rounded-[2.5rem] border-[3px] border-gray-800 dark:border-gray-600 bg-gray-900 shadow-2xl shadow-black/25 overflow-hidden">
+      <div className="rounded-[2.5rem] border-[3px] border-gray-800 bg-gray-900 shadow-2xl shadow-black/25 overflow-hidden">
         <div className="relative bg-gray-900 pt-2 pb-0">
-          <div className="mx-auto w-28 h-6 bg-gray-800 dark:bg-gray-700 rounded-b-xl" />
+          <div className="mx-auto w-28 h-6 bg-gray-800 rounded-b-xl" />
           <div className="flex items-center justify-between px-4 pt-1 pb-0.5">
             <span className="text-[9px] text-gray-400 font-medium">9:41</span>
             <div className="flex items-center gap-1">
@@ -672,7 +671,7 @@ function WhatsAppPhoneMockup() {
           </div>
         </div>
 
-        <div className="bg-[#075e54] dark:bg-[#1f3b35] px-3 py-2.5">
+        <div className="bg-[#075e54] px-3 py-2.5">
           <div className="flex items-center gap-2.5">
             <svg className="h-3.5 w-3.5 text-white/80 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
             <div className="h-9 w-9 rounded-full bg-gray-400/30 flex items-center justify-center shrink-0">
@@ -689,9 +688,9 @@ function WhatsAppPhoneMockup() {
           </div>
         </div>
 
-        <div className="bg-[#ece5dd] dark:bg-[#0b141a] h-[370px] sm:h-[400px] overflow-y-auto px-2.5 py-3 space-y-1.5 scrollbar-hide" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }}>
+        <div className="bg-[#ece5dd] h-[370px] sm:h-[400px] overflow-y-auto px-2.5 py-3 space-y-1.5 scrollbar-hide" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }}>
           <div className="text-center mb-2">
-            <span className="inline-block bg-white/80 dark:bg-[#182533] text-[9px] text-gray-500 dark:text-gray-400 px-3 py-1 rounded-lg shadow-sm font-medium">TODAY</span>
+            <span className="inline-block bg-white/80 text-[9px] text-gray-500 px-3 py-1 rounded-lg shadow-sm font-medium">TODAY</span>
           </div>
 
           {chatMessages.map((msg, i) => (
@@ -706,24 +705,24 @@ function WhatsAppPhoneMockup() {
               <div
                 className={`max-w-[82%] rounded-lg px-2 py-1.5 shadow-sm relative ${
                   msg.type === "sent"
-                    ? "bg-[#d9fdd3] dark:bg-[#005c4b] rounded-tr-none"
-                    : "bg-white dark:bg-[#202c33] rounded-tl-none"
+                    ? "bg-[#d9fdd3] rounded-tr-none"
+                    : "bg-white rounded-tl-none"
                 }`}
                 data-testid={`chat-message-${i}`}
               >
                 {msg.isPromo && (
                   <div className="flex items-center gap-1 mb-0.5">
-                    <span className="text-[7px] font-bold text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-1.5 py-0.5 rounded">OFFER</span>
+                    <span className="text-[7px] font-bold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">OFFER</span>
                   </div>
                 )}
                 {msg.isReminder && (
                   <div className="flex items-center gap-1 mb-0.5">
-                    <span className="text-[7px] font-bold text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-1.5 py-0.5 rounded">REMINDER</span>
+                    <span className="text-[7px] font-bold text-purple-700 bg-purple-100 px-1.5 py-0.5 rounded">REMINDER</span>
                   </div>
                 )}
-                <p className="text-[11px] leading-[1.45] text-gray-900 dark:text-gray-100 whitespace-pre-line">{msg.text}</p>
+                <p className="text-[11px] leading-[1.45] text-gray-900 whitespace-pre-line">{msg.text}</p>
                 <div className="flex items-center justify-end gap-1 -mb-0.5">
-                  <span className="text-[8px] text-gray-500/80 dark:text-gray-400/80">{msg.time}</span>
+                  <span className="text-[8px] text-gray-500/80">{msg.time}</span>
                   {msg.type === "sent" && (
                     <svg className="h-[11px] w-[16px] text-[#53bdeb]" viewBox="0 0 16 11" fill="none">
                       <path d="M11.071.653a.457.457 0 0 0-.304-.102.493.493 0 0 0-.381.178l-6.19 7.636-2.405-2.272a.463.463 0 0 0-.336-.136.47.47 0 0 0-.343.153l-.875.894a.518.518 0 0 0 .005.765l3.32 3.245c.095.093.218.15.352.15a.478.478 0 0 0 .37-.188l7.034-8.745a.52.52 0 0 0-.104-.721l-.143-.112z" fill="currentColor" />
@@ -736,11 +735,11 @@ function WhatsAppPhoneMockup() {
           ))}
         </div>
 
-        <div className="bg-[#f0f0f0] dark:bg-[#1b2428] px-2 py-1.5 flex items-center gap-1.5">
+        <div className="bg-[#f0f0f0] px-2 py-1.5 flex items-center gap-1.5">
           <div className="h-8 w-8 rounded-full flex items-center justify-center shrink-0">
-            <svg className="h-5 w-5 text-gray-500 dark:text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></svg>
+            <svg className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></svg>
           </div>
-          <div className="flex-1 bg-white dark:bg-[#2a3942] rounded-full px-3 py-1.5 flex items-center gap-2">
+          <div className="flex-1 bg-white rounded-full px-3 py-1.5 flex items-center gap-2">
             <span className="text-[11px] text-gray-400 flex-1">Type a message</span>
             <svg className="h-4 w-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" /></svg>
           </div>
@@ -755,8 +754,8 @@ function WhatsAppPhoneMockup() {
       </div>
 
       <div className="absolute -top-3 -right-3 animate-float-1">
-        <div className="bg-white dark:bg-card rounded-xl shadow-lg border border-emerald-100 dark:border-emerald-900/30 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-0">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center shrink-0">
+        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-0">
+          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
             <Tag className="h-3.5 w-3.5 text-emerald-500" />
           </div>
           <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float1")}</span>
@@ -764,8 +763,8 @@ function WhatsAppPhoneMockup() {
       </div>
 
       <div className="absolute top-24 -left-4 sm:-left-8 animate-float-2">
-        <div className="bg-white dark:bg-card rounded-xl shadow-lg border border-emerald-100 dark:border-emerald-900/30 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-1">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center shrink-0">
+        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-1">
+          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
             <Bell className="h-3.5 w-3.5 text-emerald-500" />
           </div>
           <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float2")}</span>
@@ -773,8 +772,8 @@ function WhatsAppPhoneMockup() {
       </div>
 
       <div className="absolute bottom-28 -right-4 sm:-right-6 animate-float-3">
-        <div className="bg-white dark:bg-card rounded-xl shadow-lg border border-emerald-100 dark:border-emerald-900/30 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-2">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center shrink-0">
+        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-2">
+          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
             <Heart className="h-3.5 w-3.5 text-emerald-500" />
           </div>
           <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float3")}</span>
@@ -782,8 +781,8 @@ function WhatsAppPhoneMockup() {
       </div>
 
       <div className="absolute bottom-10 -left-2 sm:-left-6 animate-float-4">
-        <div className="bg-white dark:bg-card rounded-xl shadow-lg border border-emerald-100 dark:border-emerald-900/30 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-3">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 dark:bg-emerald-950/40 flex items-center justify-center shrink-0">
+        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-3">
+          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
             <MessageSquare className="h-3.5 w-3.5 text-emerald-500" />
           </div>
           <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float4")}</span>
@@ -796,17 +795,17 @@ function WhatsAppPhoneMockup() {
 function WhatsAppMarketingSection() {
   const { t } = useLanguage();
   const benefits = [
-    { icon: TrendingUp, text: t("whatsapp.b1"), color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-100 dark:bg-emerald-900/40" },
-    { icon: Repeat, text: t("whatsapp.b2"), color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-100 dark:bg-purple-900/40" },
-    { icon: Zap, text: t("whatsapp.b3"), color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-100 dark:bg-amber-900/40" },
-    { icon: Smartphone, text: t("whatsapp.b4"), color: "text-violet-600 dark:text-violet-400", bg: "bg-violet-100 dark:bg-violet-900/40" },
+    { icon: TrendingUp, text: t("whatsapp.b1"), color: "text-emerald-600", bg: "bg-emerald-100" },
+    { icon: Repeat, text: t("whatsapp.b2"), color: "text-purple-600", bg: "bg-purple-100" },
+    { icon: Zap, text: t("whatsapp.b3"), color: "text-amber-600", bg: "bg-amber-100" },
+    { icon: Smartphone, text: t("whatsapp.b4"), color: "text-violet-600", bg: "bg-violet-100" },
   ];
 
   return (
-    <section id="whatsapp" className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/40 to-white dark:from-background dark:via-emerald-950/15 dark:to-background">
-      <div className="absolute top-24 right-[10%] w-[400px] h-[400px] bg-emerald-300/10 dark:bg-emerald-500/8 rounded-full blur-[120px]" />
-      <div className="absolute bottom-24 left-[5%] w-[350px] h-[350px] bg-green-300/10 dark:bg-green-500/6 rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-teal-200/8 dark:bg-teal-500/5 rounded-full blur-[100px]" />
+    <section id="whatsapp" className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/40 to-white">
+      <div className="absolute top-24 right-[10%] w-[400px] h-[400px] bg-emerald-300/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-24 left-[5%] w-[350px] h-[350px] bg-green-300/10 rounded-full blur-[120px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-teal-200/8 rounded-full blur-[100px]" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
@@ -816,10 +815,10 @@ function WhatsAppMarketingSection() {
             variants={stagger}
           >
             <motion.div variants={fadeInUp}>
-              <span className="inline-block mb-6 text-xs uppercase tracking-widest bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 px-4 py-1.5 rounded-full font-semibold" data-testid="badge-automation-suite">{t("whatsapp.badge")}</span>
+              <span className="inline-block mb-6 text-xs uppercase tracking-widest bg-emerald-50 text-emerald-600 px-4 py-1.5 rounded-full font-semibold" data-testid="badge-automation-suite">{t("whatsapp.badge")}</span>
             </motion.div>
             <motion.h2 variants={fadeInUp} className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 tracking-tight" data-testid="heading-whatsapp">
-              <span className="bg-gradient-to-r from-emerald-500 to-green-600 dark:from-emerald-400 dark:to-green-500 bg-clip-text text-transparent">{t("whatsapp.title")}
+              <span className="bg-gradient-to-r from-emerald-500 to-green-600 bg-clip-text text-transparent">{t("whatsapp.title")}
 </span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-[600px]" data-testid="text-whatsapp-subtitle">
@@ -833,7 +832,7 @@ function WhatsAppMarketingSection() {
               <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">{t("whatsapp.benefitsTitle")}</h3>
               <div className="grid grid-cols-2 gap-3">
                 {benefits.map((b, i) => (
-                  <div key={i} className="flex items-center gap-2.5 bg-white dark:bg-card rounded-xl px-3 py-2.5 border border-border/50 shadow-sm" data-testid={`text-whatsapp-benefit-${i}`}>
+                  <div key={i} className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-2.5 border border-border/50 shadow-sm" data-testid={`text-whatsapp-benefit-${i}`}>
                     <div className={`h-8 w-8 rounded-lg ${b.bg} flex items-center justify-center shrink-0`}>
                       <b.icon className={`h-4 w-4 ${b.color}`} />
                     </div>
@@ -844,7 +843,7 @@ function WhatsAppMarketingSection() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white font-semibold px-8 hover:scale-105 transition-all duration-200 shadow-lg shadow-emerald-500/20" data-testid="button-start-automating" asChild>
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700:bg-emerald-600 text-white font-semibold px-8 hover:scale-105 transition-all duration-200 shadow-lg shadow-emerald-500/20" data-testid="button-start-automating" asChild>
                 <a href={getWhatsAppLink("Hi, I want to automate my pharmacy with WhatsApp Marketing.\nI'm interested in the WhatsApp automation features.\nPlease share the details.")} target="_blank" rel="noopener noreferrer">
                   <SiWhatsapp className="h-4 w-4 mr-2" />
                   {t("whatsapp.ctaButton")}
@@ -872,73 +871,73 @@ function OwnerFeatureIllustration({ type }: { type: string }) {
   switch (type) {
     case "staff":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center gap-3">
             <div className="flex flex-col items-center gap-1">
               <div className="h-8 w-8 rounded-full bg-purple-500 flex items-center justify-center"><span className="text-[9px] text-white font-bold">AH</span></div>
-              <div className="h-1.5 w-10 bg-purple-200 dark:bg-purple-800 rounded-full" />
+              <div className="h-1.5 w-10 bg-purple-200 rounded-full" />
             </div>
             <div className="flex flex-col items-center gap-1 -mt-4">
               <div className="h-10 w-10 rounded-full bg-violet-500 flex items-center justify-center"><span className="text-[10px] text-white font-bold">SK</span></div>
-              <div className="h-1.5 w-12 bg-violet-200 dark:bg-violet-800 rounded-full" />
+              <div className="h-1.5 w-12 bg-violet-200 rounded-full" />
               <div className="text-[7px] text-purple-500 font-bold">ADMIN</div>
             </div>
             <div className="flex flex-col items-center gap-1">
               <div className="h-8 w-8 rounded-full bg-violet-500 flex items-center justify-center"><span className="text-[9px] text-white font-bold">MR</span></div>
-              <div className="h-1.5 w-10 bg-violet-200 dark:bg-violet-800 rounded-full" />
+              <div className="h-1.5 w-10 bg-violet-200 rounded-full" />
             </div>
           </div>
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-            <div className="h-1 w-3 bg-purple-300 dark:bg-purple-700 rounded-full" />
-            <div className="h-1 w-6 bg-violet-400 dark:bg-violet-600 rounded-full" />
-            <div className="h-1 w-3 bg-violet-300 dark:bg-violet-700 rounded-full" />
+            <div className="h-1 w-3 bg-purple-300 rounded-full" />
+            <div className="h-1 w-6 bg-violet-400 rounded-full" />
+            <div className="h-1 w-3 bg-violet-300 rounded-full" />
           </div>
         </div>
       );
     case "salary":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6">
-            <div className="w-full flex items-center justify-between bg-white/70 dark:bg-white/10 rounded-lg px-3 py-2">
+            <div className="w-full flex items-center justify-between bg-white/70 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="h-6 w-6 rounded-full bg-emerald-500 flex items-center justify-center"><span className="text-[7px] text-white font-bold">AH</span></div>
-                <div className="h-1.5 w-14 bg-emerald-200 dark:bg-emerald-800 rounded-full" />
+                <div className="h-1.5 w-14 bg-emerald-200 rounded-full" />
               </div>
-              <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">Rs 35,000</span>
+              <span className="text-[9px] font-bold text-emerald-600">Rs 35,000</span>
             </div>
-            <div className="w-full flex items-center justify-between bg-white/70 dark:bg-white/10 rounded-lg px-3 py-2">
+            <div className="w-full flex items-center justify-between bg-white/70 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="h-6 w-6 rounded-full bg-teal-500 flex items-center justify-center"><span className="text-[7px] text-white font-bold">SK</span></div>
-                <div className="h-1.5 w-14 bg-teal-200 dark:bg-teal-800 rounded-full" />
+                <div className="h-1.5 w-14 bg-teal-200 rounded-full" />
               </div>
-              <span className="text-[9px] font-bold text-teal-600 dark:text-teal-400">Rs 28,000</span>
+              <span className="text-[9px] font-bold text-teal-600">Rs 28,000</span>
             </div>
-            <div className="w-full flex items-center justify-between bg-white/70 dark:bg-white/10 rounded-lg px-3 py-2">
+            <div className="w-full flex items-center justify-between bg-white/70 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="h-6 w-6 rounded-full bg-emerald-500 flex items-center justify-center"><span className="text-[7px] text-white font-bold">MR</span></div>
-                <div className="h-1.5 w-14 bg-emerald-200 dark:bg-emerald-800 rounded-full" />
+                <div className="h-1.5 w-14 bg-emerald-200 rounded-full" />
               </div>
-              <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">Rs 22,000</span>
+              <span className="text-[9px] font-bold text-emerald-600">Rs 22,000</span>
             </div>
           </div>
         </div>
       );
     case "profit":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center px-5">
             <div className="w-full flex items-center justify-between mb-2">
-              <span className="text-[8px] font-bold text-amber-700 dark:text-amber-400">REVENUE</span>
-              <span className="text-[8px] font-bold text-emerald-600 dark:text-emerald-400">↑ 24%</span>
+              <span className="text-[8px] font-bold text-amber-700">REVENUE</span>
+              <span className="text-[8px] font-bold text-emerald-600">↑ 24%</span>
             </div>
             <div className="w-full flex items-end gap-1 h-16">
               {[30, 45, 35, 55, 50, 70, 65, 80, 72, 90, 85, 95].map((h, i) => (
-                <div key={i} className="flex-1 rounded-t-sm bg-gradient-to-t from-amber-500 to-orange-400 dark:from-amber-600 dark:to-orange-500" style={{ height: `${h}%` }} />
+                <div key={i} className="flex-1 rounded-t-sm bg-gradient-to-t from-amber-500 to-orange-400" style={{ height: `${h}%` }} />
               ))}
             </div>
             <div className="w-full flex justify-between mt-1.5 px-0.5">
               {["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"].map((m, i) => (
-                <span key={i} className="text-[5px] text-amber-500 dark:text-amber-600">{m}</span>
+                <span key={i} className="text-[5px] text-amber-500">{m}</span>
               ))}
             </div>
           </div>
@@ -946,60 +945,60 @@ function OwnerFeatureIllustration({ type }: { type: string }) {
       );
     case "ai":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-purple-50 to-fuchsia-50 dark:from-purple-950/30 dark:to-fuchsia-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-purple-50 to-fuchsia-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-5">
-            <div className="flex items-center gap-2 bg-white/60 dark:bg-white/10 rounded-lg px-3 py-2 w-full">
+            <div className="flex items-center gap-2 bg-white/60 rounded-lg px-3 py-2 w-full">
               <Sparkles className="h-3.5 w-3.5 text-purple-500 shrink-0" />
-              <span className="text-[8px] text-purple-700 dark:text-purple-300 font-medium">Panadol stock running low — reorder now</span>
+              <span className="text-[8px] text-purple-700 font-medium">Panadol stock running low — reorder now</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/60 dark:bg-white/10 rounded-lg px-3 py-2 w-full">
+            <div className="flex items-center gap-2 bg-white/60 rounded-lg px-3 py-2 w-full">
               <TrendingUp className="h-3.5 w-3.5 text-fuchsia-500 shrink-0" />
-              <span className="text-[8px] text-fuchsia-700 dark:text-fuchsia-300 font-medium">Revenue up 18% vs last month</span>
+              <span className="text-[8px] text-fuchsia-700 font-medium">Revenue up 18% vs last month</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/60 dark:bg-white/10 rounded-lg px-3 py-2 w-full">
+            <div className="flex items-center gap-2 bg-white/60 rounded-lg px-3 py-2 w-full">
               <Brain className="h-3.5 w-3.5 text-violet-500 shrink-0" />
-              <span className="text-[8px] text-violet-700 dark:text-violet-300 font-medium">Vitamin D demand predicted +32%</span>
+              <span className="text-[8px] text-violet-700 font-medium">Vitamin D demand predicted +32%</span>
             </div>
           </div>
         </div>
       );
     case "supplier":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 px-5">
-            <div className="w-full flex items-center justify-between bg-white/60 dark:bg-white/10 rounded-lg px-3 py-2">
+            <div className="w-full flex items-center justify-between bg-white/60 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
-                <div className="h-5 w-5 rounded bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                  <Truck className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
+                <div className="h-5 w-5 rounded bg-emerald-100 flex items-center justify-center">
+                  <Truck className="h-3 w-3 text-emerald-600" />
                 </div>
                 <span className="text-[8px] font-semibold">MedPharma Co.</span>
               </div>
-              <span className="text-[7px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">Delivered</span>
+              <span className="text-[7px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Delivered</span>
             </div>
-            <div className="w-full flex items-center justify-between bg-white/60 dark:bg-white/10 rounded-lg px-3 py-2">
+            <div className="w-full flex items-center justify-between bg-white/60 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
-                <div className="h-5 w-5 rounded bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                  <Truck className="h-3 w-3 text-amber-600 dark:text-amber-400" />
+                <div className="h-5 w-5 rounded bg-amber-100 flex items-center justify-center">
+                  <Truck className="h-3 w-3 text-amber-600" />
                 </div>
                 <span className="text-[8px] font-semibold">HealthPlus Ltd.</span>
               </div>
-              <span className="text-[7px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">In Transit</span>
+              <span className="text-[7px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">In Transit</span>
             </div>
-            <div className="w-full flex items-center justify-between bg-white/60 dark:bg-white/10 rounded-lg px-3 py-2">
+            <div className="w-full flex items-center justify-between bg-white/60 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
-                <div className="h-5 w-5 rounded bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                  <Truck className="h-3 w-3 text-green-600 dark:text-green-400" />
+                <div className="h-5 w-5 rounded bg-green-100 flex items-center justify-center">
+                  <Truck className="h-3 w-3 text-green-600" />
                 </div>
                 <span className="text-[8px] font-semibold">PharmaLink</span>
               </div>
-              <span className="text-[7px] font-bold px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">Pending</span>
+              <span className="text-[7px] font-bold px-2 py-0.5 rounded-full bg-green-100 text-green-700">Pending</span>
             </div>
           </div>
         </div>
       );
     case "reports":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/30 dark:to-pink-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-rose-50 to-pink-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center px-5 gap-2">
             <div className="w-full flex items-center gap-3">
               <div className="flex-1">
@@ -1009,37 +1008,37 @@ function OwnerFeatureIllustration({ type }: { type: string }) {
                   ))}
                 </div>
               </div>
-              <div className="w-14 h-14 rounded-full border-4 border-rose-400 dark:border-rose-500 flex items-center justify-center relative">
-                <span className="text-[10px] font-bold text-rose-600 dark:text-rose-400">87%</span>
+              <div className="w-14 h-14 rounded-full border-4 border-rose-400 flex items-center justify-center relative">
+                <span className="text-[10px] font-bold text-rose-600">87%</span>
                 <div className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-emerald-500 flex items-center justify-center">
                   <Check className="h-2.5 w-2.5 text-white" />
                 </div>
               </div>
             </div>
             <div className="w-full flex gap-2">
-              <div className="flex-1 h-2 bg-rose-200 dark:bg-rose-800 rounded-full"><div className="h-full w-[87%] bg-rose-500 rounded-full" /></div>
-              <div className="flex-1 h-2 bg-pink-200 dark:bg-pink-800 rounded-full"><div className="h-full w-[62%] bg-pink-500 rounded-full" /></div>
+              <div className="flex-1 h-2 bg-rose-200 rounded-full"><div className="h-full w-[87%] bg-rose-500 rounded-full" /></div>
+              <div className="flex-1 h-2 bg-pink-200 rounded-full"><div className="h-full w-[62%] bg-pink-500 rounded-full" /></div>
             </div>
           </div>
         </div>
       );
     case "inventory":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-lime-50 to-green-50 dark:from-lime-950/30 dark:to-green-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-lime-50 to-green-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 px-5">
             {[
               { name: "Panadol 500mg", qty: "12", level: 15, alert: true },
               { name: "Vitamin D3", qty: "248", level: 85, alert: false },
               { name: "Amoxicillin", qty: "45", level: 35, alert: true },
             ].map((item, i) => (
-              <div key={i} className="w-full bg-white/60 dark:bg-white/10 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                <Boxes className="h-3 w-3 text-lime-600 dark:text-lime-400 shrink-0" />
+              <div key={i} className="w-full bg-white/60 rounded-lg px-3 py-1.5 flex items-center gap-2">
+                <Boxes className="h-3 w-3 text-lime-600 shrink-0" />
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-center">
                     <span className="text-[8px] font-semibold truncate">{item.name}</span>
                     <span className="text-[7px] font-bold text-muted-foreground">{item.qty} pcs</span>
                   </div>
-                  <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full mt-0.5">
+                  <div className="h-1.5 w-full bg-slate-200 rounded-full mt-0.5">
                     <div className={`h-full rounded-full ${item.alert ? 'bg-red-500' : 'bg-emerald-500'}`} style={{ width: `${item.level}%` }} />
                   </div>
                 </div>
@@ -1051,10 +1050,10 @@ function OwnerFeatureIllustration({ type }: { type: string }) {
       );
     case "security":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-slate-50 to-zinc-100 dark:from-slate-950/30 dark:to-zinc-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-slate-50 to-zinc-100 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
             <div className="relative">
-              <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-900 dark:from-slate-500 dark:to-slate-700 flex items-center justify-center shadow-lg">
+              <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center shadow-lg">
                 <ShieldCheck className="h-7 w-7 text-white" />
               </div>
               <div className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-emerald-500 flex items-center justify-center">
@@ -1063,11 +1062,11 @@ function OwnerFeatureIllustration({ type }: { type: string }) {
             </div>
             <div className="flex items-center gap-1.5 mt-1">
               <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              <span className="text-[8px] font-bold text-emerald-600 dark:text-emerald-400">ENCRYPTED & SECURE</span>
+              <span className="text-[8px] font-bold text-emerald-600">ENCRYPTED & SECURE</span>
             </div>
             <div className="flex gap-1">
               {[...Array(4)].map((_, i) => (
-                <div key={i} className="h-1.5 w-5 bg-slate-300 dark:bg-slate-600 rounded-full" />
+                <div key={i} className="h-1.5 w-5 bg-slate-300 rounded-full" />
               ))}
             </div>
           </div>
@@ -1075,24 +1074,24 @@ function OwnerFeatureIllustration({ type }: { type: string }) {
       );
     case "mobile":
       return (
-        <div className="relative w-full h-36 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 rounded-xl overflow-hidden">
+        <div className="relative w-full h-36 bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-28 bg-white dark:bg-slate-800 rounded-xl border-2 border-slate-300 dark:border-slate-600 shadow-lg flex flex-col overflow-hidden">
+            <div className="w-16 h-28 bg-white rounded-xl border-2 border-slate-300 shadow-lg flex flex-col overflow-hidden">
               <div className="h-2 bg-purple-500 w-full" />
               <div className="flex-1 p-1.5 flex flex-col gap-1">
-                <div className="h-1.5 w-10 bg-slate-200 dark:bg-slate-700 rounded-full" />
+                <div className="h-1.5 w-10 bg-slate-200 rounded-full" />
                 <div className="flex gap-1 mt-0.5">
-                  <div className="h-5 w-5 rounded bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center"><BarChart3 className="h-2.5 w-2.5 text-purple-500" /></div>
-                  <div className="h-5 w-5 rounded bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center"><TrendingUp className="h-2.5 w-2.5 text-emerald-500" /></div>
+                  <div className="h-5 w-5 rounded bg-purple-100 flex items-center justify-center"><BarChart3 className="h-2.5 w-2.5 text-purple-500" /></div>
+                  <div className="h-5 w-5 rounded bg-emerald-100 flex items-center justify-center"><TrendingUp className="h-2.5 w-2.5 text-emerald-500" /></div>
                 </div>
-                <div className="h-1 w-8 bg-slate-200 dark:bg-slate-700 rounded-full" />
-                <div className="flex-1 bg-purple-50 dark:bg-purple-900/20 rounded flex items-end gap-0.5 p-0.5">
+                <div className="h-1 w-8 bg-slate-200 rounded-full" />
+                <div className="flex-1 bg-purple-50 rounded flex items-end gap-0.5 p-0.5">
                   {[40, 60, 45, 75, 55].map((h, i) => (
                     <div key={i} className="flex-1 bg-purple-400 rounded-t-sm" style={{ height: `${h}%` }} />
                   ))}
                 </div>
               </div>
-              <div className="h-1 w-6 bg-slate-300 dark:bg-slate-600 rounded-full mx-auto mb-1" />
+              <div className="h-1 w-6 bg-slate-300 rounded-full mx-auto mb-1" />
             </div>
           </div>
         </div>
@@ -1117,7 +1116,7 @@ function OwnerControlSection() {
   ];
 
   return (
-    <section className="py-24 sm:py-28 relative overflow-hidden bg-gradient-to-b from-slate-50/80 via-white to-white dark:from-slate-950/50 dark:via-background dark:to-background">
+    <section className="py-24 sm:py-28 relative overflow-hidden bg-gradient-to-b from-slate-50/80 via-white to-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
@@ -1127,7 +1126,7 @@ function OwnerControlSection() {
           variants={stagger}
         >
           <motion.div variants={fadeInUp}>
-            <span className="inline-block mb-5 text-xs uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 font-semibold" data-testid="badge-owner-system">
+            <span className="inline-block mb-5 text-xs uppercase tracking-[0.2em] text-purple-600 font-semibold" data-testid="badge-owner-system">
               {t("owner.badge")}
             </span>
           </motion.div>
@@ -1139,7 +1138,7 @@ function OwnerControlSection() {
           >
             {t("owner.title1")}
             <br />
-            <span className="bg-gradient-to-r from-purple-600 to-emerald-500 dark:from-purple-400 dark:to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-600 to-emerald-500 bg-clip-text text-transparent">
               {t("owner.title2")}
             </span>
           </motion.h2>
@@ -1164,7 +1163,7 @@ function OwnerControlSection() {
             <motion.div
               key={i}
               variants={fadeInUp}
-              className="group bg-white dark:bg-card rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
               data-testid={`card-owner-feature-${i}`}
             >
               <div className="p-1.5 pb-0">
@@ -1172,8 +1171,8 @@ function OwnerControlSection() {
               </div>
               <div className="p-6 pt-5">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="h-10 w-10 rounded-xl bg-purple-50 dark:bg-purple-950/40 flex items-center justify-center shrink-0 group-hover:bg-purple-100 dark:group-hover:bg-purple-950/60 transition-colors duration-300">
-                    <f.icon className="h-5 w-5 text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                  <div className="h-10 w-10 rounded-xl bg-purple-50 flex items-center justify-center shrink-0 group-hover:bg-purple-100:bg-purple-950/60 transition-colors duration-300">
+                    <f.icon className="h-5 w-5 text-purple-600 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <h3 className="text-base font-bold tracking-tight">{f.title}</h3>
                 </div>
@@ -1190,7 +1189,7 @@ function OwnerControlSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Button className="bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-white font-semibold rounded-xl px-8 py-3.5 h-auto text-base hover:scale-105 transition-all duration-200 shadow-lg shadow-purple-500/20" data-testid="button-owner-dashboard" asChild>
+          <Button className="bg-purple-600 hover:bg-purple-700:bg-purple-600 text-white font-semibold rounded-xl px-8 py-3.5 h-auto text-base hover:scale-105 transition-all duration-200 shadow-lg shadow-purple-500/20" data-testid="button-owner-dashboard" asChild>
             <a href={getWhatsAppLink("Hi, I want full control over my pharmacy operations.\nI'm interested in the Owner Dashboard features.\nPlease share the details.")} target="_blank" rel="noopener noreferrer">
               {t("owner.ctaButton")}
               <ArrowRight className="h-4 w-4 ml-2" />
@@ -1232,7 +1231,7 @@ function ComparisonSection() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-muted/30 dark:bg-muted/10">
+    <section className="py-16 sm:py-24 bg-muted/30">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-10 sm:mb-14"
@@ -1263,8 +1262,8 @@ function ComparisonSection() {
                   <TableRow className="border-b-2">
                     <TableHead className="min-w-[200px] font-bold text-sm py-4">{t("comparison.feature")}</TableHead>
                     <TableHead className="text-center font-bold text-sm py-4 text-destructive/80">{t("comparison.manual")}</TableHead>
-                    <TableHead className="text-center font-bold text-sm py-4 text-amber-600 dark:text-amber-400">{t("comparison.oldSoftware")}</TableHead>
-                    <TableHead className="text-center font-bold text-sm py-4 text-primary bg-primary/5 dark:bg-primary/10">{t("comparison.ourSystem")}</TableHead>
+                    <TableHead className="text-center font-bold text-sm py-4 text-amber-600">{t("comparison.oldSoftware")}</TableHead>
+                    <TableHead className="text-center font-bold text-sm py-4 text-primary bg-primary/5">{t("comparison.ourSystem")}</TableHead>
                     <TableHead className="w-[50px]" />
                   </TableRow>
                 </TableHeader>
@@ -1300,12 +1299,12 @@ function ComparisonSection() {
                           </span>
                         </TableCell>
                         <TableCell className="text-center py-3">
-                          <span className="inline-flex items-center gap-1.5 text-amber-600 dark:text-amber-400 text-sm font-medium">
+                          <span className="inline-flex items-center gap-1.5 text-amber-600 text-sm font-medium">
                             <AlertTriangle className="h-3.5 w-3.5" /> {t(`comparison.${f.key}.old`)}
                           </span>
                         </TableCell>
-                        <TableCell className="text-center py-3 bg-primary/5 dark:bg-primary/10">
-                          <span className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold text-sm">
+                        <TableCell className="text-center py-3 bg-primary/5">
+                          <span className="inline-flex items-center gap-1.5 text-emerald-600 font-bold text-sm">
                             <Check className="h-3.5 w-3.5" /> {t(`comparison.${f.key}.ai`)}
                           </span>
                         </TableCell>
@@ -1346,7 +1345,7 @@ function ComparisonSection() {
                         </div>
                         <div>
                           <h4 className="font-semibold text-sm">{t(`comparison.${f.key}`)}</h4>
-                          <Badge variant="secondary" className="mt-1 text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-0">
+                          <Badge variant="secondary" className="mt-1 text-[10px] bg-emerald-500/10 text-emerald-600 border-0">
                             {t(`comparison.${f.key}.ai`)}
                           </Badge>
                         </div>
@@ -1371,14 +1370,14 @@ function ComparisonSection() {
                             <p className="text-[10px] text-muted-foreground mb-1">{t("comparison.oldSoftware")}</p>
                             <div className="flex items-center justify-center gap-1">
                               <AlertTriangle className="h-3 w-3 text-amber-500" />
-                              <span className="text-xs font-semibold text-amber-600 dark:text-amber-400">{t(`comparison.${f.key}.old`)}</span>
+                              <span className="text-xs font-semibold text-amber-600">{t(`comparison.${f.key}.old`)}</span>
                             </div>
                           </div>
                           <div className="text-center p-2.5 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
                             <p className="text-[10px] text-muted-foreground mb-1">{t("comparison.ourSystem")}</p>
                             <div className="flex items-center justify-center gap-1">
                               <Check className="h-3 w-3 text-emerald-500" />
-                              <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">{t(`comparison.${f.key}.ai`)}</span>
+                              <span className="text-xs font-bold text-emerald-600">{t(`comparison.${f.key}.ai`)}</span>
                             </div>
                           </div>
                         </div>
@@ -1466,15 +1465,15 @@ function PricingSection() {
   ];
 
   const colorMap: Record<string, { iconBg: string; iconColor: string; glow: string }> = {
-    emerald: { iconBg: "bg-emerald-500/10 dark:bg-emerald-500/20", iconColor: "text-emerald-600 dark:text-emerald-400", glow: "shadow-emerald-500/10" },
-    purple: { iconBg: "bg-primary/10 dark:bg-primary/20", iconColor: "text-primary", glow: "shadow-primary/10" },
-    violet: { iconBg: "bg-violet-500/10 dark:bg-violet-500/20", iconColor: "text-violet-600 dark:text-violet-400", glow: "shadow-violet-500/10" },
+    emerald: { iconBg: "bg-emerald-500/10", iconColor: "text-emerald-600", glow: "shadow-emerald-500/10" },
+    purple: { iconBg: "bg-primary/10", iconColor: "text-primary", glow: "shadow-primary/10" },
+    violet: { iconBg: "bg-violet-500/10", iconColor: "text-violet-600", glow: "shadow-violet-500/10" },
   };
 
   return (
     <section id="pricing" className="py-16 sm:py-24 relative">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-primary/5 dark:bg-primary/8 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1538,7 +1537,7 @@ function PricingSection() {
                 <Card
                   className={`p-0 bg-background flex flex-col h-full overflow-hidden ${
                     isHighlight
-                      ? "border-violet-500/40 shadow-xl shadow-violet-500/5 dark:shadow-violet-500/10 ring-2 ring-violet-500/20"
+                      ? "border-violet-500/40 shadow-xl shadow-violet-500/5 ring-2 ring-violet-500/20"
                       : isPopular
                         ? "border-primary/40 shadow-lg shadow-primary/5 ring-2 ring-primary/15"
                         : "hover:shadow-lg transition-shadow"
@@ -1567,7 +1566,7 @@ function PricingSection() {
                       </div>
                     </div>
 
-                    <div className="bg-muted/50 dark:bg-muted/20 rounded-xl p-4 -mx-1">
+                    <div className="bg-muted/50 rounded-xl p-4 -mx-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-xs text-muted-foreground font-medium">PKR</span>
                         <span className="text-sm text-muted-foreground line-through">PKR {plan.originalPrice}</span>
@@ -1577,7 +1576,7 @@ function PricingSection() {
                         <span className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">{plan.price}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-2">
-                        <Badge className="bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border-emerald-500/20 text-[10px] px-2 py-0.5 font-semibold" data-testid={`badge-save-${plan.name.toLowerCase()}`}>
+                        <Badge className="bg-emerald-500/15 text-emerald-700 border-emerald-500/20 text-[10px] px-2 py-0.5 font-semibold" data-testid={`badge-save-${plan.name.toLowerCase()}`}>
                           {t("pricing.save")} PKR {plan.saveAmount}
                         </Badge>
                         <span className="text-[10px] text-muted-foreground font-medium">{t("pricing.oneTime")}</span>
@@ -1595,8 +1594,8 @@ function PricingSection() {
                     <div className="space-y-2">
                       {plan.features.map((f) => (
                         <div key={f} className="flex items-start gap-2.5">
-                          <div className="mt-0.5 h-4 w-4 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 flex items-center justify-center shrink-0">
-                            <Check className="h-2.5 w-2.5 text-emerald-600 dark:text-emerald-400" />
+                          <div className="mt-0.5 h-4 w-4 rounded-full bg-emerald-500/15 flex items-center justify-center shrink-0">
+                            <Check className="h-2.5 w-2.5 text-emerald-600" />
                           </div>
                           <span className="text-sm">{f}</span>
                         </div>
@@ -1688,7 +1687,7 @@ function ROISection() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-muted/30 dark:bg-muted/10">
+    <section className="py-16 sm:py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -1892,7 +1891,7 @@ function TestimonialsSection() {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-muted/30 dark:bg-muted/10 overflow-hidden">
+    <section className="py-16 sm:py-24 bg-muted/30 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -1997,8 +1996,8 @@ function DemoSection() {
   const { t } = useLanguage();
   return (
     <section id="demo" className="py-16 sm:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-emerald-500/5 dark:from-primary/15 dark:to-emerald-500/15" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-emerald-500/5" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
@@ -2019,7 +2018,7 @@ function DemoSection() {
           </motion.h2>
 
           <motion.div variants={fadeInUp} className="mt-8">
-            <Button asChild size="lg" className="bg-emerald-600 dark:bg-emerald-500 text-white border-emerald-700 dark:border-emerald-400 gap-2 text-base" data-testid="button-demo-whatsapp">
+            <Button asChild size="lg" className="bg-emerald-600 text-white border-emerald-700 gap-2 text-base" data-testid="button-demo-whatsapp">
               <a href={getWhatsAppLink("Hi, I want to book a free demo of the AI Pharmacy System.\nPlease schedule a demo for me.\nI'm available to connect.")} target="_blank" rel="noopener noreferrer">
                 <SiWhatsapp className="h-5 w-5" />
                 {t("demo.ctaButton")}
@@ -2049,7 +2048,7 @@ function FAQSection() {
   ];
 
   return (
-    <section id="faq" className="py-16 sm:py-24 bg-muted/30 dark:bg-muted/10">
+    <section id="faq" className="py-16 sm:py-24 bg-muted/30">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -2090,7 +2089,7 @@ function FAQSection() {
 function FooterSection() {
   const { t } = useLanguage();
   return (
-    <footer id="footer" className="py-12 border-t bg-muted/10 dark:bg-muted/5">
+    <footer id="footer" className="py-12 border-t bg-muted/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -2275,7 +2274,7 @@ function AIChatbot() {
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.2 }}
-          className={`${windowClasses} bg-white dark:bg-card rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col`}
+          className={`${windowClasses} bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col`}
           style={windowHeight}
           data-testid="chatbot-window"
         >
@@ -2322,15 +2321,15 @@ function AIChatbot() {
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} gap-2`}>
                 {msg.role === "assistant" && (
-                  <div className="h-7 w-7 rounded-full bg-purple-100 dark:bg-purple-950/40 flex items-center justify-center shrink-0 mt-0.5">
-                    <Bot className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
+                  <div className="h-7 w-7 rounded-full bg-purple-100 flex items-center justify-center shrink-0 mt-0.5">
+                    <Bot className="h-3.5 w-3.5 text-purple-600" />
                   </div>
                 )}
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                     msg.role === "user"
                       ? "bg-purple-600 text-white rounded-br-sm"
-                      : "bg-slate-100 dark:bg-slate-800 text-foreground rounded-bl-sm"
+                      : "bg-slate-100 text-foreground rounded-bl-sm"
                   }`}
                   data-testid={`chatbot-message-${i}`}
                 >
@@ -2340,10 +2339,10 @@ function AIChatbot() {
             ))}
             {isLoading && (
               <div className="flex justify-start gap-2">
-                <div className="h-7 w-7 rounded-full bg-purple-100 dark:bg-purple-950/40 flex items-center justify-center shrink-0">
-                  <Bot className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
+                <div className="h-7 w-7 rounded-full bg-purple-100 flex items-center justify-center shrink-0">
+                  <Bot className="h-3.5 w-3.5 text-purple-600" />
                 </div>
-                <div className="bg-slate-100 dark:bg-slate-800 rounded-2xl rounded-bl-sm px-4 py-3 flex items-center gap-1.5">
+                <div className="bg-slate-100 rounded-2xl rounded-bl-sm px-4 py-3 flex items-center gap-1.5">
                   <div className="h-2 w-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: "0ms" }} />
                   <div className="h-2 w-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: "150ms" }} />
                   <div className="h-2 w-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: "300ms" }} />
@@ -2359,7 +2358,7 @@ function AIChatbot() {
                 <button
                   key={i}
                   onClick={() => { setInput(q); setTimeout(() => inputRef.current?.focus(), 50); }}
-                  className="text-[11px] px-3 py-1.5 rounded-full border border-purple-200 dark:border-purple-800 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950/30 transition-colors font-medium"
+                  className="text-[11px] px-3 py-1.5 rounded-full border border-purple-200 text-purple-600 hover:bg-purple-50:bg-purple-950/30 transition-colors font-medium"
                   data-testid={`chatbot-quick-${i}`}
                 >
                   {q}
@@ -2368,7 +2367,7 @@ function AIChatbot() {
             </div>
           )}
 
-          <div className="border-t border-slate-200 dark:border-slate-800 shrink-0">
+          <div className="border-t border-slate-200 shrink-0">
             <div className="px-3 py-3 flex items-center gap-2">
               <input
                 ref={inputRef}
@@ -2377,7 +2376,7 @@ function AIChatbot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                 placeholder={t("chatbot.placeholder")}
-                className="flex-1 bg-slate-100 dark:bg-slate-800 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-purple-500/50 placeholder:text-muted-foreground"
+                className="flex-1 bg-slate-100 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-purple-500/50 placeholder:text-muted-foreground"
                 disabled={isLoading}
                 data-testid="input-chatbot"
               />
@@ -2391,7 +2390,7 @@ function AIChatbot() {
               </button>
             </div>
             <div className="text-center pb-2">
-              <span className="text-[9px] text-muted-foreground">{t("chatbot.powered")} <span className="font-semibold text-purple-600 dark:text-purple-400">Anas Tech Services</span></span>
+              <span className="text-[9px] text-muted-foreground">{t("chatbot.powered")} <span className="font-semibold text-purple-600">Anas Tech Services</span></span>
             </div>
           </div>
         </motion.div>
