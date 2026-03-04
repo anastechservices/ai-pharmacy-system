@@ -297,71 +297,98 @@ function Navbar() {
 function HeroSection() {
   const { t } = useLanguage();
   return (
-    <section className="relative pt-24 pb-14 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-emerald-500/[0.06]" />
-        <div className="absolute top-20 left-[10%] w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-[10%] w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-violet-500/5 rounded-full blur-3xl" />
+    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 bg-white overflow-hidden">
+      <div className="absolute top-24 left-[8%] w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 rotate-12 opacity-80 flex items-center justify-center shadow-lg shadow-emerald-500/20" aria-hidden="true">
+        <Pill className="h-6 w-6 text-white -rotate-12" />
+      </div>
+      <div className="absolute top-32 right-[10%] w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-violet-400 to-violet-600 -rotate-6 opacity-80 flex items-center justify-center shadow-lg shadow-violet-500/20" aria-hidden="true">
+        <BarChart3 className="h-5 w-5 text-white rotate-6" />
+      </div>
+      <div className="absolute bottom-[35%] left-[5%] w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 rotate-6 opacity-70 flex items-center justify-center shadow-lg shadow-blue-500/20 hidden sm:flex" aria-hidden="true">
+        <PackageSearch className="h-4 w-4 text-white -rotate-6" />
+      </div>
+      <div className="absolute bottom-[40%] right-[6%] w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 -rotate-12 opacity-75 flex items-center justify-center shadow-lg shadow-orange-500/20 hidden sm:flex" aria-hidden="true">
+        <Zap className="h-5 w-5 text-white rotate-12" />
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div initial="hidden" animate="visible" variants={staggerSlow}>
-          <motion.div variants={fadeInUp} className="mb-6">
-            <Badge variant="secondary" className="gap-2 px-4 py-2 text-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              {t("hero.badge")}
-            </Badge>
+          <motion.div variants={fadeInUp} className="mb-8 flex items-center justify-center">
+            <div className="inline-flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-full px-4 py-2" data-testid="hero-trust-badge">
+              <div className="flex -space-x-2">
+                <div className="w-7 h-7 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center">
+                  <Pill className="h-3 w-3 text-white" />
+                </div>
+                <div className="w-7 h-7 rounded-full bg-violet-500 border-2 border-white flex items-center justify-center">
+                  <Star className="h-3 w-3 text-white" />
+                </div>
+                <div className="w-7 h-7 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center">
+                  <Heart className="h-3 w-3 text-white" />
+                </div>
+              </div>
+              <span className="text-sm font-semibold text-gray-700">{t("hero.badge")}</span>
+            </div>
           </motion.div>
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-extrabold tracking-tight leading-[1.1] mb-6 text-gray-900"
           >
             {t("hero.title1")}
             <br />
-            <span className="bg-gradient-to-r from-purple-600 via-primary to-emerald-500 bg-clip-text text-transparent">
-              {t("hero.title2")}
-            </span>
+            {t("hero.title2")}
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed"
           >
             {t("hero.subtitle")}
           </motion.p>
 
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+          <motion.div variants={fadeInUp} className="flex flex-col items-center gap-3 mb-6">
             <WhatsAppCTA size="lg" text={t("hero.bookDemo")} message="Hi, I'm interested in the AI Pharmacy System.
 I'd like to book a free demo.
 Please share the details." />
-            <Button asChild size="lg" variant="outline" className="gap-2" data-testid="button-watch-demo">
-              <a href="#video">
-                <Play className="h-4 w-4" />
-                {t("hero.watchDemo")}
-              </a>
-            </Button>
-          </motion.div>
-
-          <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            {[
-              { icon: GraduationCap, text: t("hero.freeTraining") },
-              { icon: Headphones, text: t("hero.freeSupport") },
-              { icon: Smartphone, text: t("hero.worksOnMobile") },
-              { icon: Shield, text: t("hero.secureCloud") },
-            ].map((item) => (
-              <div key={item.text} className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CircleCheck className="h-4 w-4 text-emerald-500 shrink-0" />
-                {item.text}
-              </div>
-            ))}
+            <div className="flex items-center gap-2 text-sm text-gray-400" data-testid="hero-note">
+              <Shield className="h-4 w-4" />
+              <span>{t("hero.secureCloud")}</span>
+            </div>
           </motion.div>
         </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+        className="relative max-w-5xl mx-auto mt-10 sm:mt-16 px-4 sm:px-6 lg:px-8"
+      >
+        <div className="rounded-2xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/60 overflow-hidden p-1" data-testid="hero-dashboard-preview">
+          <div className="rounded-xl bg-gradient-to-b from-gray-50 to-white p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <img src={atsLogoPath} alt="Anas Tech Services" className="h-8 w-8 rounded-md object-contain" />
+              <span className="font-bold text-gray-800 text-sm">AI Pharmacy Dashboard</span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              {[
+                { label: t("hero.freeTraining"), value: "100%", sub: "Free", icon: GraduationCap, color: "text-emerald-600 bg-emerald-50" },
+                { label: t("hero.freeSupport"), value: "24/7", sub: "Available", icon: Headphones, color: "text-violet-600 bg-violet-50" },
+                { label: t("hero.worksOnMobile"), value: "All", sub: "Devices", icon: Smartphone, color: "text-blue-600 bg-blue-50" },
+                { label: t("hero.secureCloud"), value: "SSL", sub: "Encrypted", icon: Shield, color: "text-orange-600 bg-orange-50" },
+              ].map((stat) => (
+                <div key={stat.label} className="rounded-xl border border-gray-100 bg-white p-4 text-center" data-testid={`hero-stat-${stat.label}`}>
+                  <div className={`inline-flex items-center justify-center w-9 h-9 rounded-lg ${stat.color} mb-2`}>
+                    <stat.icon className="h-4 w-4" />
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold text-gray-900">{stat.value}</div>
+                  <div className="text-[11px] text-gray-400 mt-0.5">{stat.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       <ClientsMarquee />
     </section>
@@ -1660,16 +1687,14 @@ function PricingSection() {
           </div>
 
           <motion.div variants={fadeInUp}>
-            <Card className="p-6 sm:p-8 bg-gradient-to-br from-primary/5 via-background to-emerald-500/5 border-primary/20 text-center" data-testid="card-monthly-plan">
-              <h4 className="text-lg sm:text-xl font-bold mb-2">{t("pricing.monthlyTitle")}</h4>
-              <p className="text-sm text-muted-foreground max-w-lg mx-auto mb-5">{t("pricing.monthlySub")}</p>
-              <Button asChild size="lg" className="gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white border-0 shadow-md shadow-emerald-500/20" data-testid="button-start-monthly">
-                <a href={getWhatsAppLink("Hi, I'm interested in the Monthly Subscription Plan.\nI'd like to know the monthly pricing and what's included.\nPlease share the details.")} target="_blank" rel="noopener noreferrer">
-                  <SiWhatsapp className="h-4 w-4" />
-                  {t("pricing.startMonthly")}
+            <div className="text-center py-4 px-6 border border-border/40 rounded-lg bg-muted/20" data-testid="card-monthly-plan">
+              <p className="text-xs text-muted-foreground">
+                {t("pricing.monthlyTitle")} — {t("pricing.monthlySub")}{" "}
+                <a href={getWhatsAppLink("Hi, I'm interested in the Monthly Subscription Plan.\nI'd like to know the monthly pricing and what's included.\nPlease share the details.")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1" data-testid="link-monthly-plan">
+                  {t("pricing.startMonthly")} <ArrowRight className="h-3 w-3" />
                 </a>
-              </Button>
-            </Card>
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </div>
