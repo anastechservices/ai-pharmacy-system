@@ -81,6 +81,7 @@ import {
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import atsLogoPath from "@assets/1-_White_-_2D_1772477289066.jpg";
+import { getActiveFestival, type Festival } from "@/lib/festivals";
 
 const WHATSAPP_BASE = "https://wa.me/923276393019?text=";
 const WHATSAPP_LINK = `${WHATSAPP_BASE}${encodeURIComponent("Hi, I want demo of AI Pharmacy System")}`;
@@ -1470,7 +1471,7 @@ Please guide me on getting started." />
 }
 
 function PricingSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const plans = [
     {
@@ -1534,6 +1535,11 @@ function PricingSection() {
     violet: { iconBg: "bg-violet-500/10", iconColor: "text-violet-600", glow: "shadow-violet-500/10" },
   };
 
+  const activeFestival = getActiveFestival();
+  const festivalName = activeFestival
+    ? (lang === "ur" ? activeFestival.nameUr : activeFestival.nameEn)
+    : null;
+
   return (
     <section id="pricing" className="py-16 sm:py-24 relative">
       <div className="absolute inset-0">
@@ -1549,16 +1555,31 @@ function PricingSection() {
           variants={stagger}
         >
           <motion.div variants={fadeInUp}>
-            <Badge variant="destructive" className="mb-5 gap-1.5 px-5 py-2 text-sm animate-pulse">
-              <Flame className="h-4 w-4" />
-              {t("pricing.limitedOffer")}
-            </Badge>
+            {activeFestival ? (
+              <Badge variant="destructive" className="mb-5 gap-1.5 px-5 py-2 text-sm animate-pulse">
+                <span className="text-base mr-0.5">{activeFestival.emoji}</span>
+                {festivalName} — 30% OFF
+              </Badge>
+            ) : (
+              <Badge variant="destructive" className="mb-5 gap-1.5 px-5 py-2 text-sm animate-pulse">
+                <Flame className="h-4 w-4" />
+                {t("pricing.limitedOffer")}
+              </Badge>
+            )}
           </motion.div>
           <motion.h2 variants={fadeInUp} className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 tracking-tight">
-            {t("pricing.offerEnds")}
+            {activeFestival
+              ? (lang === "ur"
+                  ? `${activeFestival.greetingUr} — Special Sale`
+                  : `${activeFestival.greetingEn} — Special Sale`)
+              : t("pricing.offerEnds")}
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-destructive font-semibold text-sm mb-8">
-            {t("pricing.missOut")}
+            {activeFestival
+              ? (lang === "ur"
+                  ? "Tamam plans pe 30% OFF — mehdood waqt ke liye!"
+                  : "30% OFF on all plans — limited time only!")
+              : t("pricing.missOut")}
           </motion.p>
         </motion.div>
 
@@ -2344,9 +2365,106 @@ function FooterSection() {
   );
 }
 
+function FestivalPopup() {
+  const { lang } = useLanguage();
+  const [festival, setFestival] = useState<Festival | null>(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const active = getActiveFestival();
+    if (!active) return;
+    const dismissed = sessionStorage.getItem(`festival_dismissed_${active.id}`);
+    if (dismissed) return;
+    setFestival(active);
+    const timer = setTimeout(() => setShow(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleClose = () => {
+    setShow(false);
+    if (festival) sessionStorage.setItem(`festival_dismissed_${festival.id}`, "1");
+    setTimeout(() => setFestival(null), 300);
+  };
+
+  if (!festival) return null;
+
+  const name = lang === "ur" ? festival.nameUr : festival.nameEn;
+  const greeting = lang === "ur" ? festival.greetingUr : festival.greetingEn;
+  const desc = lang === "ur" ? festival.descUr : festival.descEn;
+
+  return (
+    <>
+      {show && (
+        <div className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" onClick={handleClose}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+            data-testid="festival-popup"
+          >
+            <div className={`bg-gradient-to-br ${festival.themeFrom} ${festival.themeTo} px-6 pt-8 pb-10 text-center relative overflow-hidden`}>
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-4 left-8 text-5xl animate-pulse">{festival.emoji}</div>
+                <div className="absolute top-12 right-6 text-4xl animate-pulse" style={{ animationDelay: "0.5s" }}>{festival.emoji}</div>
+                <div className="absolute bottom-4 left-1/4 text-3xl animate-pulse" style={{ animationDelay: "1s" }}>{festival.emoji}</div>
+                <div className="absolute bottom-8 right-1/4 text-5xl animate-pulse" style={{ animationDelay: "0.3s" }}>{festival.emoji}</div>
+              </div>
+
+              <button
+                onClick={handleClose}
+                className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
+                data-testid="button-festival-close"
+              >
+                <X className="h-4 w-4 text-white" />
+              </button>
+
+              <div className="relative">
+                <span className="text-6xl block mb-3">{festival.emoji}</span>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-1">
+                  {greeting}
+                </h2>
+                <p className="text-white/80 text-sm font-medium">{name}</p>
+              </div>
+            </div>
+
+            <div className="px-6 py-6 text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-200 mb-4">
+                <Flame className="h-4 w-4 text-red-500" />
+                <span className="text-sm font-bold text-red-600">30% OFF — {lang === "ur" ? "Tamam Plans Pe" : "On All Plans"}</span>
+              </div>
+
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">{desc}</p>
+
+              <Button
+                asChild
+                size="lg"
+                className={`w-full bg-gradient-to-r ${festival.themeFrom} ${festival.themeTo} text-white border-0 gap-2 text-base font-semibold h-12 shadow-lg hover:shadow-xl transition-shadow`}
+                data-testid="button-festival-cta"
+              >
+                <a href="#pricing" onClick={handleClose}>
+                  <Sparkles className="h-4 w-4" />
+                  {lang === "ur" ? "Abhi Offer Dekhein" : "View Special Offer"}
+                </a>
+              </Button>
+
+              <p className="text-xs text-gray-400 mt-3">
+                {lang === "ur" ? "Mehdood waqt ke liye — ab hi faida uthaein!" : "Limited time only — don't miss out!"}
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
+      <FestivalPopup />
       <Navbar />
       <HeroSection />
       <VideoSection />
