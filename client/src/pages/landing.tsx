@@ -238,7 +238,7 @@ function Navbar() {
   const links = [
     { label: t("nav.features"), href: "#features" },
     { label: t("nav.pricing"), href: "#pricing" },
-    { label: t("nav.demo"), href: "#demo" },
+    { label: t("nav.demo"), href: "#video" },
     { label: t("nav.faq"), href: "#faq" },
     { label: t("nav.contact"), href: "#footer" },
   ];
@@ -402,9 +402,9 @@ function HeroSection() {
             <WhatsAppCTA size="lg" text={t("hero.bookDemo")} message="Hi, I'm interested in the AI Pharmacy System.
 I'd like to book a free demo.
 Please share the details." />
-            <Button asChild size="lg" variant="outline" className="gap-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-all" data-testid="button-watch-demo">
-              <a href="#video">
-                <Play className="h-4 w-4" />
+            <Button asChild size="lg" variant="outline" className="gap-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-all" data-testid="button-pricing-plans">
+              <a href="#pricing">
+                <Sparkles className="h-4 w-4" />
                 {t("hero.watchDemo")}
               </a>
             </Button>
@@ -2325,7 +2325,7 @@ function FooterSection() {
               {[
                 { label: t("nav.features"), href: "#features" },
                 { label: t("nav.pricing"), href: "#pricing" },
-                { label: t("nav.demo"), href: "#demo" },
+                { label: t("nav.demo"), href: "#video" },
                 { label: t("nav.faq"), href: "#faq" },
               ].map((link) => (
                 <a key={link.label} href={link.href} className="block text-sm text-muted-foreground">{link.label}</a>
@@ -2373,16 +2373,13 @@ function FestivalPopup() {
   useEffect(() => {
     const active = getActiveFestival();
     if (!active) return;
-    const dismissed = sessionStorage.getItem(`festival_dismissed_${active.id}`);
-    if (dismissed) return;
     setFestival(active);
-    const timer = setTimeout(() => setShow(true), 1200);
+    const timer = setTimeout(() => setShow(true), 3000);
     return () => clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
     setShow(false);
-    if (festival) sessionStorage.setItem(`festival_dismissed_${festival.id}`, "1");
     setTimeout(() => setFestival(null), 300);
   };
 
