@@ -1570,7 +1570,7 @@ function PricingSection() {
           <motion.h2 variants={fadeInUp} className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 tracking-tight">
             {activeFestival
               ? (lang === "ur"
-                  ? `${activeFestival.greetingUr} — Special Sale`
+                  ? `${activeFestival.greetingUr} — Khaas Sale`
                   : `${activeFestival.greetingEn} — Special Sale`)
               : t("pricing.offerEnds")}
           </motion.h2>
