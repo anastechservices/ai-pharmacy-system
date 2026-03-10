@@ -89,7 +89,7 @@ function getWhatsAppLink(message: string) {
   return `${WHATSAPP_BASE}${encodeURIComponent(message)}`;
 }
 const WHATSAPP_NUMBER = "+92 327 6393019";
-const YOUTUBE_DEMO = "https://youtube.com/watch?v=demo12345";
+const YOUTUBE_DEMO = "https://youtube.com/watch?v=1eyhilFoOgw";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
@@ -1475,9 +1475,9 @@ function PricingSection() {
   const plans = [
     {
       name: t("pricing.basic"),
-      originalPrice: "50,000",
-      price: "39,000",
-      saveAmount: "11,000",
+      originalPrice: "39,000",
+      price: "30,000",
+      saveAmount: "9,000",
       note: t("pricing.starterNote"),
       color: "emerald",
       icon: PackageSearch,
@@ -1490,13 +1490,14 @@ function PricingSection() {
     },
     {
       name: t("pricing.standard"),
-      originalPrice: "80,000",
-      price: "70,000",
-      saveAmount: "10,000",
+      originalPrice: "77,000",
+      price: "59,000",
+      saveAmount: "18,000",
       note: t("pricing.standardNote"),
       color: "purple",
       icon: TrendingUp,
       popular: true,
+      ai: true,
       cta: t("pricing.upgradeStandard"),
       prefix: t("pricing.everythingBasicPlus"),
       features: [
@@ -1508,9 +1509,9 @@ function PricingSection() {
     },
     {
       name: t("pricing.premium"),
-      originalPrice: "1,30,000",
-      price: "90,000",
-      saveAmount: "40,000",
+      originalPrice: "1,16,000",
+      price: "89,000",
+      saveAmount: "27,000",
       note: t("pricing.premiumNote"),
       color: "violet",
       icon: Crown,
@@ -1639,6 +1640,9 @@ function PricingSection() {
                         <span className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">{plan.price}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-2">
+                        <Badge className="bg-red-500/15 text-red-600 border-red-500/20 text-[10px] px-2 py-0.5 font-bold" data-testid={`badge-off-${plan.name.toLowerCase()}`}>
+                          30% OFF
+                        </Badge>
                         <Badge className="bg-emerald-500/15 text-emerald-700 border-emerald-500/20 text-[10px] px-2 py-0.5 font-semibold" data-testid={`badge-save-${plan.name.toLowerCase()}`}>
                           {t("pricing.save")} PKR {plan.saveAmount}
                         </Badge>
