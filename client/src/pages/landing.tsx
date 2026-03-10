@@ -166,19 +166,20 @@ function LanguageSwitcher() {
   );
 }
 
-function CountdownTimer() {
+function CountdownTimer({ festival }: { festival: Festival }) {
   const { t } = useLanguage();
-  const [timeLeft, setTimeLeft] = useState({ days: 3, hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const stored = localStorage.getItem("countdown_end");
-    let endTime: number;
-    if (stored) {
-      endTime = parseInt(stored, 10);
+    const now = new Date();
+    const year = now.getFullYear();
+    let endDate: Date;
+    if (festival.endMonth < festival.startMonth) {
+      endDate = new Date(year + 1, festival.endMonth - 1, festival.endDay, 23, 59, 59, 999);
     } else {
-      endTime = Date.now() + 3 * 24 * 60 * 60 * 1000;
-      localStorage.setItem("countdown_end", endTime.toString());
+      endDate = new Date(year, festival.endMonth - 1, festival.endDay, 23, 59, 59, 999);
     }
+    const endTime = endDate.getTime();
 
     const tick = () => {
       const diff = Math.max(0, endTime - Date.now());
@@ -192,7 +193,7 @@ function CountdownTimer() {
     tick();
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [festival]);
 
   const units = [
     { label: t("pricing.days"), value: timeLeft.days },
@@ -1583,15 +1584,17 @@ function PricingSection() {
           </motion.p>
         </motion.div>
 
-        <motion.div
-          className="flex justify-center mb-14"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={scaleIn}
-        >
-          <CountdownTimer />
-        </motion.div>
+        {activeFestival && (
+          <motion.div
+            className="flex justify-center mb-14"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={scaleIn}
+          >
+            <CountdownTimer festival={activeFestival} />
+          </motion.div>
+        )}
 
         <motion.div
           className="text-center mb-10"
