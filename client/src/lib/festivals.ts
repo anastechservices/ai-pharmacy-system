@@ -13,6 +13,7 @@ export interface Festival {
   greetingUr: string;
   themeFrom: string;
   themeTo: string;
+  priority: number;
 }
 
 const festivals: Festival[] = [
@@ -27,30 +28,7 @@ const festivals: Festival[] = [
     greetingEn: "Happy New Year!",
     greetingUr: "Naya Saal Mubarak!",
     themeFrom: "from-yellow-500", themeTo: "to-orange-600",
-  },
-  {
-    id: "kashmir-day",
-    nameEn: "Kashmir Solidarity Day",
-    nameUr: "Youm-e-Yakjehti Kashmir",
-    startMonth: 2, startDay: 5, endMonth: 2, endDay: 5,
-    emoji: "🤝",
-    descEn: "Stand united — upgrade your pharmacy this Kashmir Day!",
-    descUr: "Mutahid rahein — Kashmir Day pe apni pharmacy upgrade karein!",
-    greetingEn: "Kashmir Solidarity Day",
-    greetingUr: "Youm-e-Yakjehti Kashmir",
-    themeFrom: "from-green-600", themeTo: "to-emerald-700",
-  },
-  {
-    id: "shab-e-barat",
-    nameEn: "Shab-e-Barat",
-    nameUr: "Shab-e-Barat Mubarak",
-    startMonth: 2, startDay: 1, endMonth: 2, endDay: 2,
-    emoji: "🌙",
-    descEn: "Blessed night, blessed savings on your pharmacy system!",
-    descUr: "Mubarak raat, pharmacy system pe mubarak bachat!",
-    greetingEn: "Shab-e-Barat Mubarak!",
-    greetingUr: "Shab-e-Barat Mubarak!",
-    themeFrom: "from-indigo-600", themeTo: "to-purple-700",
+    priority: 80,
   },
   {
     id: "shab-e-meraj",
@@ -63,6 +41,33 @@ const festivals: Festival[] = [
     greetingEn: "Shab-e-Meraj Mubarak!",
     greetingUr: "Shab-e-Meraj Mubarak!",
     themeFrom: "from-blue-600", themeTo: "to-indigo-700",
+    priority: 85,
+  },
+  {
+    id: "shab-e-barat",
+    nameEn: "Shab-e-Barat",
+    nameUr: "Shab-e-Barat Mubarak",
+    startMonth: 2, startDay: 1, endMonth: 2, endDay: 2,
+    emoji: "🌙",
+    descEn: "Blessed night, blessed savings on your pharmacy system!",
+    descUr: "Mubarak raat, pharmacy system pe mubarak bachat!",
+    greetingEn: "Shab-e-Barat Mubarak!",
+    greetingUr: "Shab-e-Barat Mubarak!",
+    themeFrom: "from-indigo-600", themeTo: "to-purple-700",
+    priority: 85,
+  },
+  {
+    id: "kashmir-day",
+    nameEn: "Kashmir Solidarity Day",
+    nameUr: "Youm-e-Yakjehti Kashmir",
+    startMonth: 2, startDay: 5, endMonth: 2, endDay: 5,
+    emoji: "🤝",
+    descEn: "Stand united — upgrade your pharmacy this Kashmir Day!",
+    descUr: "Mutahid rahein — Kashmir Day pe apni pharmacy upgrade karein!",
+    greetingEn: "Kashmir Solidarity Day",
+    greetingUr: "Youm-e-Yakjehti Kashmir",
+    themeFrom: "from-green-600", themeTo: "to-emerald-700",
+    priority: 70,
   },
   {
     id: "ramzan",
@@ -75,6 +80,7 @@ const festivals: Festival[] = [
     greetingEn: "Ramzan Mubarak!",
     greetingUr: "Ramzan Mubarak!",
     themeFrom: "from-emerald-600", themeTo: "to-teal-700",
+    priority: 50,
   },
   {
     id: "shab-e-qadr",
@@ -87,6 +93,7 @@ const festivals: Festival[] = [
     greetingEn: "Shab-e-Qadr Mubarak!",
     greetingUr: "Shab-e-Qadr Mubarak!",
     themeFrom: "from-violet-600", themeTo: "to-purple-800",
+    priority: 95,
   },
   {
     id: "eid-ul-fitr",
@@ -99,6 +106,7 @@ const festivals: Festival[] = [
     greetingEn: "Eid Mubarak!",
     greetingUr: "Eid Mubarak!",
     themeFrom: "from-emerald-500", themeTo: "to-green-700",
+    priority: 100,
   },
   {
     id: "pakistan-day",
@@ -111,6 +119,7 @@ const festivals: Festival[] = [
     greetingEn: "Happy Pakistan Day!",
     greetingUr: "Youm-e-Pakistan Mubarak!",
     themeFrom: "from-green-600", themeTo: "to-emerald-800",
+    priority: 90,
   },
   {
     id: "labour-day",
@@ -123,6 +132,7 @@ const festivals: Festival[] = [
     greetingEn: "Happy Labour Day!",
     greetingUr: "Youm-e-Mazdoor Mubarak!",
     themeFrom: "from-red-600", themeTo: "to-orange-600",
+    priority: 70,
   },
   {
     id: "eid-ul-adha",
@@ -135,6 +145,7 @@ const festivals: Festival[] = [
     greetingEn: "Eid ul-Adha Mubarak!",
     greetingUr: "Eid ul-Adha Mubarak!",
     themeFrom: "from-teal-600", themeTo: "to-cyan-700",
+    priority: 100,
   },
   {
     id: "independence-day",
@@ -147,18 +158,20 @@ const festivals: Festival[] = [
     greetingEn: "Happy Independence Day!",
     greetingUr: "Youm-e-Azadi Mubarak!",
     themeFrom: "from-green-600", themeTo: "to-emerald-700",
+    priority: 95,
   },
   {
     id: "eid-milad",
-    nameEn: "Eid Milad-un-Nabi ﷺ",
-    nameUr: "Eid Milad-un-Nabi ﷺ Mubarak",
+    nameEn: "Eid Milad-un-Nabi \uFDFA",
+    nameUr: "Eid Milad-un-Nabi \uFDFA Mubarak",
     startMonth: 9, startDay: 5, endMonth: 9, endDay: 6,
     emoji: "🕌",
     descEn: "Celebrate the blessed day with blessings for your business!",
     descUr: "Mubarak din ko apne business ke liye barkat ka zariya banaein!",
     greetingEn: "Eid Milad-un-Nabi Mubarak!",
-    greetingUr: "Eid Milad-un-Nabi ﷺ Mubarak!",
+    greetingUr: "Eid Milad-un-Nabi \uFDFA Mubarak!",
     themeFrom: "from-green-700", themeTo: "to-emerald-800",
+    priority: 90,
   },
   {
     id: "defence-day",
@@ -171,6 +184,7 @@ const festivals: Festival[] = [
     greetingEn: "Happy Defence Day!",
     greetingUr: "Youm-e-Difa Mubarak!",
     themeFrom: "from-green-700", themeTo: "to-teal-800",
+    priority: 75,
   },
   {
     id: "iqbal-day",
@@ -183,6 +197,7 @@ const festivals: Festival[] = [
     greetingEn: "Happy Iqbal Day!",
     greetingUr: "Youm-e-Iqbal Mubarak!",
     themeFrom: "from-amber-600", themeTo: "to-orange-700",
+    priority: 75,
   },
   {
     id: "quaid-day",
@@ -195,22 +210,26 @@ const festivals: Festival[] = [
     greetingEn: "Happy Quaid-e-Azam Day!",
     greetingUr: "Youm-e-Quaid Mubarak!",
     themeFrom: "from-green-600", themeTo: "to-emerald-700",
+    priority: 85,
   },
 ];
+
+function isDateInRange(month: number, day: number, f: Festival): boolean {
+  if (f.startMonth === f.endMonth) {
+    return month === f.startMonth && day >= f.startDay && day <= f.endDay;
+  }
+  const afterStart = month > f.startMonth || (month === f.startMonth && day >= f.startDay);
+  const beforeEnd = month < f.endMonth || (month === f.endMonth && day <= f.endDay);
+  return afterStart && beforeEnd;
+}
 
 export function getActiveFestival(): Festival | null {
   const now = new Date();
   const month = now.getMonth() + 1;
   const day = now.getDate();
 
-  for (const f of festivals) {
-    if (f.startMonth === f.endMonth) {
-      if (month === f.startMonth && day >= f.startDay && day <= f.endDay) return f;
-    } else {
-      const afterStart = month > f.startMonth || (month === f.startMonth && day >= f.startDay);
-      const beforeEnd = month < f.endMonth || (month === f.endMonth && day <= f.endDay);
-      if (afterStart && beforeEnd) return f;
-    }
-  }
-  return null;
+  const active = festivals.filter((f) => isDateInRange(month, day, f));
+  if (active.length === 0) return null;
+  active.sort((a, b) => b.priority - a.priority);
+  return active[0];
 }
