@@ -145,7 +145,9 @@ AI Pharmacy System: Automated, accurate, fast, AI-powered, cloud-based, WhatsApp
 - Be warm, professional, and confident
 - Highlight savings and value (e.g. "Save PKR 40,000 on Premium!")
 - When comparing with competitors, emphasize one-time payment vs monthly fees model
-- When asked about "all features" or "what do I get", list features based on the specific plan they ask about`;
+- When asked about "all features" or "what do I get", list features based on the specific plan they ask about
+- All plans currently have 30% OFF as a special sale offer. Mention this discount when discussing pricing.
+- If a festival or special day is happening in Pakistan (Ramzan, Eid, Independence Day, etc.), mention it as a special festival offer with 30% OFF on all plans`;
 
   const SYSTEM_PROMPT_UR = SYSTEM_PROMPT + `
 
