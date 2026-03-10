@@ -22,7 +22,7 @@ Contact: WhatsApp (for demo booking and inquiries)
 7. AI Sales Insights & Business Growth Analytics — AI-powered suggestions to boost sales, reduce waste, and track growth trends
 8. Cloud Access Anywhere — Access pharmacy data securely from any device (mobile, tablet, desktop), any browser, anywhere
 9. Secure Data Protection — SSL encryption, daily backups, and enterprise-grade security with authorized-only access
-10. Business Growth Analytics — Track growth trends and identify opportunities to scale
+10. Supplier Management — Track vendors, purchase records, and delivery statuses
 
 ====== OWNER DASHBOARD FEATURES ======
 - Staff Management — Add, remove, control access with role-based permissions
@@ -38,7 +38,7 @@ Contact: WhatsApp (for demo booking and inquiries)
 ====== PRICING (One-Time Payment — No Monthly Fees) ======
 All prices are in Pakistani Rupees (PKR).
 
-1. STARTER Plan — PKR 39,000 (was PKR 50,000 — Save PKR 11,000)
+1. STARTER Plan — PKR 30,000 (was PKR 39,000 — 30% OFF — Save PKR 9,000)
    Perfect for small pharmacies.
    Features included:
    - POS Billing System
@@ -55,7 +55,7 @@ All prices are in Pakistani Rupees (PKR).
    Your own brand domain (e.g. www.yourpharmacy.com)
    Full Security (SSL, encryption & daily backups)
 
-2. STANDARD Plan — PKR 70,000 (was PKR 80,000 — Save PKR 10,000) [MOST POPULAR]
+2. STANDARD Plan — PKR 59,000 (was PKR 77,000 — 30% OFF — Save PKR 18,000) [MOST POPULAR, AI POWERED]
    Best for growing pharmacies.
    Everything in Starter PLUS:
    - Advanced POS
@@ -69,7 +69,7 @@ All prices are in Pakistani Rupees (PKR).
    - Customer History Tracking
    - Priority Support
 
-3. PREMIUM Plan — PKR 90,000 (was PKR 1,30,000 — Save PKR 40,000) [AI POWERED]
+3. PREMIUM Plan — PKR 89,000 (was PKR 1,16,000 — 30% OFF — Save PKR 27,000) [AI POWERED]
    For fully automated pharmacy businesses.
    Everything in Standard PLUS:
    - AI Sales Insights
@@ -155,31 +155,22 @@ IMPORTANT LANGUAGE INSTRUCTION: The user has selected Roman Urdu (Urdu written i
     if (req.method !== "POST") {
       return res.status(405).json({ error: "Method not allowed" });
     }
-
     try {
       const { messages, lang } = req.body;
-
       if (!messages || !Array.isArray(messages) || messages.length === 0) {
         return res.status(400).json({ error: "Messages array is required" });
       }
-
       const sanitized = messages.slice(-10).map((m) => ({
         role: m.role === "user" ? "user" : "assistant",
         content: typeof m.content === "string" ? m.content.slice(0, 1000) : "",
       }));
-
       const systemPrompt = lang === "ur" ? SYSTEM_PROMPT_UR : SYSTEM_PROMPT;
-
       const response = await openai.chat.completions.create({
         model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...sanitized,
-        ],
+        messages: [{ role: "system", content: systemPrompt }, ...sanitized],
         max_tokens: 500,
         temperature: 0.7,
       });
-
       const reply = response.choices[0]?.message?.content || "Sorry, I could not generate a response.";
       return res.status(200).json({ reply });
     } catch (error) {
