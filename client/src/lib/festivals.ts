@@ -178,7 +178,7 @@ const festivals: Festival[] = [
     id: "memorial-day-us",
     nameEn: "Memorial Day",
     nameLocal: "Memorial Day",
-    startMonth: 5, startDay: 26, endMonth: 5, endDay: 26,
+    startMonth: 5, startDay: 25, endMonth: 5, endDay: 25,
     emoji: "🇺🇸",
     descEn: "Honor the brave — upgrade your pharmacy this Memorial Day!",
     descLocal: "Honor the brave — upgrade your pharmacy this Memorial Day!",
