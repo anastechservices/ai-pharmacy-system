@@ -82,6 +82,8 @@ import {
 import { SiWhatsapp } from "react-icons/si";
 import atsLogoPath from "@assets/1-_White_-_2D_1772477289066.jpg";
 import { getActiveFestival, type Festival } from "@/lib/festivals";
+import { useCountry } from "@/lib/geolocation";
+import { getPricing } from "@/lib/pricing";
 
 const WHATSAPP_BASE = "https://wa.me/923276393019?text=";
 const WHATSAPP_LINK = `${WHATSAPP_BASE}${encodeURIComponent("Hi, I want demo of AI Pharmacy System")}`;
@@ -138,6 +140,9 @@ function WhatsAppCTA({ text, className = "", size = "default" as "default" | "lg
 
 function LanguageSwitcher() {
   const { lang, setLang } = useLanguage();
+  const { country } = useCountry();
+  const secondLang = country.secondLang;
+
   return (
     <div className="flex items-center gap-1 bg-muted/60 rounded-full p-0.5" data-testid="language-switcher">
       <button
@@ -151,17 +156,19 @@ function LanguageSwitcher() {
       >
         EN
       </button>
-      <button
-        onClick={() => setLang("ur")}
-        className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200 ${
-          lang === "ur"
-            ? "bg-primary text-primary-foreground shadow-sm"
-            : "text-muted-foreground hover:text-foreground"
-        }`}
-        data-testid="button-lang-ur"
-      >
-        اردو
-      </button>
+      {secondLang && (
+        <button
+          onClick={() => setLang(secondLang.code as Lang)}
+          className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200 ${
+            lang === secondLang.code
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+          data-testid="button-lang-local"
+        >
+          {secondLang.label}
+        </button>
+      )}
     </div>
   );
 }
@@ -1473,13 +1480,16 @@ Please guide me on getting started." />
 
 function PricingSection() {
   const { t, lang } = useLanguage();
+  const { country } = useCountry();
+  const pricing = getPricing(country.code);
+  const cs = country.currencySymbol;
 
   const plans = [
     {
       name: t("pricing.basic"),
-      originalPrice: "39,000",
-      price: "30,000",
-      saveAmount: "9,000",
+      originalPrice: pricing.starter.originalPrice,
+      price: pricing.starter.price,
+      saveAmount: pricing.starter.saveAmount,
       note: t("pricing.starterNote"),
       color: "emerald",
       icon: PackageSearch,
@@ -1492,9 +1502,9 @@ function PricingSection() {
     },
     {
       name: t("pricing.standard"),
-      originalPrice: "77,000",
-      price: "59,000",
-      saveAmount: "18,000",
+      originalPrice: pricing.standard.originalPrice,
+      price: pricing.standard.price,
+      saveAmount: pricing.standard.saveAmount,
       note: t("pricing.standardNote"),
       color: "purple",
       icon: TrendingUp,
@@ -1511,9 +1521,9 @@ function PricingSection() {
     },
     {
       name: t("pricing.premium"),
-      originalPrice: "1,16,000",
-      price: "89,000",
-      saveAmount: "27,000",
+      originalPrice: pricing.premium.originalPrice,
+      price: pricing.premium.price,
+      saveAmount: pricing.premium.saveAmount,
       note: t("pricing.premiumNote"),
       color: "violet",
       icon: Crown,
@@ -1536,9 +1546,9 @@ function PricingSection() {
     violet: { iconBg: "bg-violet-500/10", iconColor: "text-violet-600", glow: "shadow-violet-500/10" },
   };
 
-  const activeFestival = getActiveFestival();
+  const activeFestival = getActiveFestival(country.code);
   const festivalName = activeFestival
-    ? (lang === "ur" ? activeFestival.nameUr : activeFestival.nameEn)
+    ? (lang !== "en" ? activeFestival.nameLocal : activeFestival.nameEn)
     : null;
 
   return (
@@ -1570,8 +1580,8 @@ function PricingSection() {
           </motion.div>
           <motion.h2 variants={fadeInUp} className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 tracking-tight">
             {activeFestival
-              ? (lang === "ur"
-                  ? `${activeFestival.greetingUr} — Khaas Sale`
+              ? (lang !== "en"
+                  ? `${activeFestival.greetingLocal} — ${lang === "ur" ? "Khaas Sale" : lang === "ar" ? "عرض خاص" : "Special Sale"}`
                   : `${activeFestival.greetingEn} — Special Sale`)
               : t("pricing.offerEnds")}
           </motion.h2>
@@ -1579,7 +1589,9 @@ function PricingSection() {
             {activeFestival
               ? (lang === "ur"
                   ? "Tamam plans pe 30% OFF — mehdood waqt ke liye!"
-                  : "30% OFF on all plans — limited time only!")
+                  : lang === "ar"
+                    ? "خصم 30% على جميع الخطط — لفترة محدودة!"
+                    : "30% OFF on all plans — limited time only!")
               : t("pricing.missOut")}
           </motion.p>
         </motion.div>
@@ -1656,11 +1668,11 @@ function PricingSection() {
 
                     <div className="bg-muted/50 rounded-xl p-4 -mx-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs text-muted-foreground font-medium">PKR</span>
-                        <span className="text-sm text-muted-foreground line-through">PKR {plan.originalPrice}</span>
+                        <span className="text-xs text-muted-foreground font-medium">{cs}</span>
+                        <span className="text-sm text-muted-foreground line-through">{cs} {plan.originalPrice}</span>
                       </div>
                       <div className="flex items-baseline gap-1">
-                        <span className="text-xs text-muted-foreground font-medium">PKR</span>
+                        <span className="text-xs text-muted-foreground font-medium">{cs}</span>
                         <span className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">{plan.price}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-2">
@@ -1668,7 +1680,7 @@ function PricingSection() {
                           30% OFF
                         </Badge>
                         <Badge className="bg-emerald-500/15 text-emerald-700 border-emerald-500/20 text-[10px] px-2 py-0.5 font-semibold" data-testid={`badge-save-${plan.name.toLowerCase()}`}>
-                          {t("pricing.save")} PKR {plan.saveAmount}
+                          {t("pricing.save")} {cs} {plan.saveAmount}
                         </Badge>
                         <span className="text-[10px] text-muted-foreground font-medium">{t("pricing.oneTime")}</span>
                       </div>
@@ -1697,16 +1709,16 @@ function PricingSection() {
                   <div className="px-6 pb-4">
                     {isHighlight ? (
                       <Button asChild size="lg" className="w-full gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white border-0 shadow-lg shadow-violet-500/20" data-testid="button-pricing-premium">
-                        <a href={getWhatsAppLink(`Hi, I'm interested in the ${plan.name} Plan (PKR ${plan.price}).\nI'd like to get started with the Premium AI-powered system.\nPlease share the next steps.`)} target="_blank" rel="noopener noreferrer">
+                        <a href={getWhatsAppLink(`Hi, I'm interested in the ${plan.name} Plan (${cs} ${plan.price}).\nI'd like to get started with the Premium AI-powered system.\nPlease share the next steps.`)} target="_blank" rel="noopener noreferrer">
                           <Flame className="h-4 w-4" />
                           {plan.cta}
                         </a>
                       </Button>
                     ) : isPopular ? (
-                      <WhatsAppCTA text={plan.cta} className="w-full shadow-md shadow-emerald-500/15" size="lg" message={`Hi, I'm interested in the ${plan.name} Plan (PKR ${plan.price}).\nI'd like to upgrade to the Standard plan.\nPlease share the details.`} />
+                      <WhatsAppCTA text={plan.cta} className="w-full shadow-md shadow-emerald-500/15" size="lg" message={`Hi, I'm interested in the ${plan.name} Plan (${cs} ${plan.price}).\nI'd like to upgrade to the Standard plan.\nPlease share the details.`} />
                     ) : (
                       <Button asChild variant="outline" size="lg" className="w-full gap-2" data-testid={`button-pricing-${plan.name.toLowerCase()}`}>
-                        <a href={getWhatsAppLink(`Hi, I'm interested in the ${plan.name} Plan (PKR ${plan.price}).\nI'd like to get started with this plan.\nPlease guide me.`)} target="_blank" rel="noopener noreferrer">
+                        <a href={getWhatsAppLink(`Hi, I'm interested in the ${plan.name} Plan (${cs} ${plan.price}).\nI'd like to get started with this plan.\nPlease guide me.`)} target="_blank" rel="noopener noreferrer">
                           {plan.cta}
                           <ArrowRight className="h-4 w-4" />
                         </a>
@@ -2370,11 +2382,12 @@ function FooterSection() {
 
 function FestivalPopup() {
   const { lang } = useLanguage();
+  const { country } = useCountry();
   const [festival, setFestival] = useState<Festival | null>(null);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const active = getActiveFestival();
+    const active = getActiveFestival(country.code);
     if (!active) return;
     setFestival(active);
     const timer = setTimeout(() => setShow(true), 3000);
@@ -2388,9 +2401,9 @@ function FestivalPopup() {
 
   if (!festival) return null;
 
-  const name = lang === "ur" ? festival.nameUr : festival.nameEn;
-  const greeting = lang === "ur" ? festival.greetingUr : festival.greetingEn;
-  const desc = lang === "ur" ? festival.descUr : festival.descEn;
+  const name = lang !== "en" ? festival.nameLocal : festival.nameEn;
+  const greeting = lang !== "en" ? festival.greetingLocal : festival.greetingEn;
+  const desc = lang !== "en" ? festival.descLocal : festival.descEn;
 
   return (
     <>
