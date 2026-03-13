@@ -83,7 +83,7 @@ import { SiWhatsapp } from "react-icons/si";
 import atsLogoPath from "@assets/1-_White_-_2D_1772477289066.jpg";
 import { getActiveFestival, type Festival } from "@/lib/festivals";
 import { useCountry } from "@/lib/geolocation";
-import { getPricing } from "@/lib/pricing";
+import { usePricing } from "@/lib/pricing";
 
 const WHATSAPP_BASE = "https://wa.me/923276393019?text=";
 const WHATSAPP_LINK = `${WHATSAPP_BASE}${encodeURIComponent("Hi, I want demo of AI Pharmacy System")}`;
@@ -1487,7 +1487,7 @@ Please guide me on getting started." />
 function PricingSection() {
   const { t, lang } = useLanguage();
   const { country } = useCountry();
-  const pricing = getPricing(country.code);
+  const pricing = usePricing();
   const cs = country.currencySymbol;
 
   const plans = [
@@ -2394,11 +2394,15 @@ function FestivalPopup() {
 
   useEffect(() => {
     const active = getActiveFestival(country.code);
-    if (!active) return;
+    if (!active) {
+      setFestival(null);
+      setShow(false);
+      return;
+    }
     setFestival(active);
     const timer = setTimeout(() => setShow(true), 3000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [country.code]);
 
   const handleClose = () => {
     setShow(false);
