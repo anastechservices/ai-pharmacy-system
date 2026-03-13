@@ -1,4 +1,5 @@
 import type { CountryCode } from "./geolocation";
+import { useCountry } from "./geolocation";
 
 export interface PlanPricing {
   originalPrice: string;
@@ -39,4 +40,9 @@ const pricingByCountry: Record<CountryCode, CountryPricing> = {
 
 export function getPricing(countryCode: CountryCode): CountryPricing {
   return pricingByCountry[countryCode] || pricingByCountry.PK;
+}
+
+export function usePricing(): CountryPricing {
+  const { country } = useCountry();
+  return getPricing(country.code);
 }
