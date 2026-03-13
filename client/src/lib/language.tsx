@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 
-export type Lang = "en" | "ur";
+export type Lang = "en" | "ur" | "ar";
 
 interface LanguageContextType {
   lang: Lang;
@@ -717,5 +717,66 @@ const translations: Record<Lang, Record<string, string>> = {
     "chatbot.minimize": "Chota Karein",
     "chatbot.fullscreen": "Bada Karein",
     "chatbot.close": "Band Karein",
+  },
+
+  ar: {
+    "nav.subtitle": "نظام صيدلية ذكي",
+    "nav.features": "المميزات",
+    "nav.pricing": "الأسعار",
+    "nav.demo": "فيديو تجريبي",
+    "nav.faq": "الأسئلة الشائعة",
+    "nav.contact": "اتصل بنا",
+    "nav.bookDemo": "احجز عرض مجاني",
+
+    "hero.badge": "نظام صيدلية سحابي بالذكاء الاصطناعي",
+    "hero.title1": "أدر صيدليتك",
+    "hero.title2": "بذكاء مع AI",
+    "hero.subtitle": "نظام إدارة صيدلية سحابي متكامل مع نقاط البيع، المخزون الذكي، أتمتة واتساب ورؤى أعمال فورية",
+    "hero.bookDemo": "احجز عرض مجاني على واتساب",
+    "hero.watchDemo": "خطط الأسعار",
+    "hero.freeTraining": "تدريب مجاني",
+    "hero.freeSupport": "دعم مجاني مدى الحياة",
+    "hero.worksOnMobile": "يعمل على الجوال والكمبيوتر",
+    "hero.secureCloud": "نظام سحابي آمن",
+    "hero.ourClients": "موثوق من الصيدليات",
+    "hero.clientsPharmacies": "صيدليات",
+    "hero.clientsCities": "مدن",
+    "hero.clientsSatisfaction": "رضا",
+
+    "pricing.limitedOffer": "عرض لفترة محدودة",
+    "pricing.offerEnds": "العرض ينتهي قريباً",
+    "pricing.missOut": "لا تفوت الفرصة — مقاعد محدودة متاحة!",
+    "pricing.days": "أيام",
+    "pricing.hours": "ساعات",
+    "pricing.min": "دقائق",
+    "pricing.sec": "ثواني",
+    "pricing.basic": "المبتدئ",
+    "pricing.standard": "القياسي",
+    "pricing.premium": "المتميز",
+    "pricing.oneTime": "دفعة واحدة",
+    "pricing.save": "وفر",
+    "pricing.starterNote": "مثالي للصيدليات الصغيرة",
+    "pricing.standardNote": "الأفضل للصيدليات النامية",
+    "pricing.premiumNote": "للصيدليات المؤتمتة بالكامل",
+    "pricing.investTitle": "استثمار واحد، قيمة مدى الحياة",
+    "pricing.investSub": "استثمر مرة واحدة واستمتع بوصول ودعم وتحديثات مدى الحياة",
+    "pricing.mostPopular": "الأكثر شعبية",
+    "pricing.getStarted": "ابدأ الآن",
+    "pricing.upgradeStandard": "ترقية إلى القياسي",
+    "pricing.getPremium": "احصل على المتميز",
+    "pricing.everythingBasicPlus": "كل ما في المبتدئ بالإضافة إلى:",
+    "pricing.everythingStandardPlus": "كل ما في القياسي بالإضافة إلى:",
+    "pricing.aiPowered": "مدعوم بالذكاء الاصطناعي",
+
+    "footer.smartPharmacy": "ابدأ صيدليتك الذكية اليوم",
+    "footer.chatWithUs": "تحدث معنا",
+    "footer.quickLinks": "روابط سريعة",
+    "footer.contact": "اتصل بنا",
+    "footer.whatsapp": "واتساب",
+    "footer.copyright": "2026 أنس تك سيرفسز. جميع الحقوق محفوظة.",
+
+    "chatbot.title": "مساعد الصيدلية الذكي",
+    "chatbot.askQuestions": "اسأل سؤال؟",
+    "chatbot.placeholder": "اسأل عن الأسعار والمميزات...",
   },
 };
