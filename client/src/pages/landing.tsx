@@ -143,6 +143,12 @@ function LanguageSwitcher() {
   const { country } = useCountry();
   const secondLang = country.secondLang;
 
+  useEffect(() => {
+    if (lang !== "en" && (!secondLang || secondLang.code !== lang)) {
+      setLang("en");
+    }
+  }, [country.code]);
+
   return (
     <div className="flex items-center gap-1 bg-muted/60 rounded-full p-0.5" data-testid="language-switcher">
       <button
