@@ -981,21 +981,21 @@ function OwnerFeatureIllustration({ type }: { type: string }) {
                 <div className="h-6 w-6 rounded-full bg-emerald-500 flex items-center justify-center"><span className="text-[7px] text-white font-bold">AH</span></div>
                 <div className="h-1.5 w-14 bg-emerald-200 rounded-full" />
               </div>
-              <span className="text-[9px] font-bold text-emerald-600">Rs 35,000</span>
+              <span className="text-[9px] font-bold text-emerald-600">35,000</span>
             </div>
             <div className="w-full flex items-center justify-between bg-white/70 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="h-6 w-6 rounded-full bg-teal-500 flex items-center justify-center"><span className="text-[7px] text-white font-bold">SK</span></div>
                 <div className="h-1.5 w-14 bg-teal-200 rounded-full" />
               </div>
-              <span className="text-[9px] font-bold text-teal-600">Rs 28,000</span>
+              <span className="text-[9px] font-bold text-teal-600">28,000</span>
             </div>
             <div className="w-full flex items-center justify-between bg-white/70 rounded-lg px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="h-6 w-6 rounded-full bg-emerald-500 flex items-center justify-center"><span className="text-[7px] text-white font-bold">MR</span></div>
                 <div className="h-1.5 w-14 bg-emerald-200 rounded-full" />
               </div>
-              <span className="text-[9px] font-bold text-emerald-600">Rs 22,000</span>
+              <span className="text-[9px] font-bold text-emerald-600">22,000</span>
             </div>
           </div>
         </div>
