@@ -2388,11 +2388,12 @@ function FooterSection() {
 
 function FestivalPopup() {
   const { lang } = useLanguage();
-  const { country } = useCountry();
+  const { country, loading } = useCountry();
   const [festival, setFestival] = useState<Festival | null>(null);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
+    if (loading) return;
     const active = getActiveFestival(country.code);
     if (!active) {
       setFestival(null);
@@ -2402,7 +2403,7 @@ function FestivalPopup() {
     setFestival(active);
     const timer = setTimeout(() => setShow(true), 3000);
     return () => clearTimeout(timer);
-  }, [country.code]);
+  }, [country.code, loading]);
 
   const handleClose = () => {
     setShow(false);
