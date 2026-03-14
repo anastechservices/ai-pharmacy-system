@@ -734,7 +734,7 @@ function WhatsAppPhoneMockup() {
   const chatMessages = [
     {
       type: "received",
-      text: "Hello Ahmed! 👋 Welcome to City Pharmacy.\n\nYour order #1247 has been confirmed. Here is your prescription summary:\n• Amlodipine 5mg — 30 tabs\n• Metformin 500mg — 60 tabs\n• Panadol 500mg — 20 tabs\n\nTotal: PKR 1,850 ✅",
+      text: "Hello Ahmed! 👋 Welcome to Pharma Care Pharmacy.\n\nYour order #1247 has been confirmed. Here is your prescription summary:\n• Amlodipine 5mg — 30 tabs\n• Metformin 500mg — 60 tabs\n• Panadol 500mg — 20 tabs\n\nTotal: PKR 1,850 ✅",
       time: "10:28 AM",
     },
     { type: "sent", text: "Thank you! Can you share the dosage schedule for all three?", time: "10:30 AM" },
@@ -801,11 +801,22 @@ function WhatsAppPhoneMockup() {
         <div className="bg-[#075e54] px-3 py-2.5">
           <div className="flex items-center gap-2.5">
             <svg className="h-3.5 w-3.5 text-white/80 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
-            <div className="h-9 w-9 rounded-full bg-gray-400/30 flex items-center justify-center shrink-0">
-              <Pill className="h-4 w-4 text-white/90" />
+            {/* Profile logo */}
+            <div className="h-9 w-9 rounded-full overflow-hidden shrink-0 border border-white/20">
+              <div className="h-full w-full bg-gradient-to-br from-emerald-500 to-teal-600 flex flex-col items-center justify-center relative">
+                {/* Green cross / medical icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative w-5 h-5">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[5px] h-full bg-white rounded-full opacity-90" />
+                    <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[5px] bg-white rounded-full opacity-90" />
+                  </div>
+                </div>
+                {/* PC initials at bottom */}
+                <span className="absolute bottom-[2px] text-[5px] font-black text-white/80 tracking-tight leading-none">PC</span>
+              </div>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-[13px] font-semibold leading-tight truncate">City Pharmacy</p>
+              <p className="text-white text-[13px] font-semibold leading-tight truncate">Pharma Care Pharmacy</p>
               <p className="text-emerald-200/80 text-[10px]">online</p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
@@ -896,7 +907,7 @@ function WhatsAppMarketingSection() {
       border: "border-emerald-200",
       title: t("whatsapp.float1"),
       desc: t("whatsapp.f1desc"),
-      preview: "🎁 City Pharmacy: 20% OFF Vitamins today only! Show this msg at counter.",
+      preview: "🎁 Pharma Care Pharmacy: 20% OFF Vitamins today only! Show this msg at counter.",
     },
     {
       icon: Bell,
