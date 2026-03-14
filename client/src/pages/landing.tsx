@@ -486,6 +486,13 @@ function ClientsMarquee() {
 
 function VideoSection() {
   const { t } = useLanguage();
+  const { country, loading } = useCountry();
+
+  const videoId = !loading && country.code === "PK"
+    ? "yqk24mAuvbg"
+    : "FJDTshWWO3I";
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
+
   return (
     <section id="video" className="py-14 sm:py-20 bg-muted/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -509,14 +516,21 @@ function VideoSection() {
           variants={scaleIn}
         >
           <div className="relative rounded-2xl overflow-hidden border bg-card shadow-xl aspect-video" data-testid="video-container">
-            <iframe
-              src={YOUTUBE_DEMO.replace("watch?v=", "embed/")}
-              title="AI Pharmacy System Demo"
-              className="absolute inset-0 w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
+            {loading ? (
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-muted/50">
+                <div className="h-10 w-10 rounded-full border-4 border-primary border-t-transparent animate-spin" />
+              </div>
+            ) : (
+              <iframe
+                key={videoId}
+                src={embedUrl}
+                title="AI Pharmacy System Demo"
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            )}
           </div>
         </motion.div>
 
