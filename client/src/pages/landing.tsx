@@ -249,12 +249,20 @@ function CountdownTimer({ festival }: { festival: Festival }) {
 function Navbar() {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
+  const [brandsOpen, setBrandsOpen] = useState(false);
   const links = [
     { label: t("nav.features"), href: "#features" },
     { label: t("nav.pricing"), href: "#pricing" },
     { label: t("nav.demo"), href: "#video" },
     { label: t("nav.faq"), href: "#faq" },
     { label: t("nav.contact"), href: "#footer" },
+  ];
+
+  const brands = [
+    { name: "Anas Tech Services", initials: "AT", color: "bg-violet-600", href: "#" },
+    { name: "Novinate", initials: "NV", color: "bg-emerald-600", href: "#" },
+    { name: "Digital Brandfly", initials: "DB", color: "bg-blue-600", href: "#" },
+    { name: "Digital Storeify", initials: "DS", color: "bg-amber-600", href: "#" },
   ];
 
   return (
@@ -275,6 +283,30 @@ function Navbar() {
                 {l.label}
               </a>
             ))}
+            {/* Our Brands dropdown */}
+            <div className="relative group" data-testid="dropdown-our-brands">
+              <button className="flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground rounded-md transition-colors group-hover:text-foreground">
+                {t("nav.ourBrands")}
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="bg-white rounded-xl border shadow-lg shadow-black/8 p-2 min-w-[220px]">
+                  {brands.map((brand) => (
+                    <a
+                      key={brand.name}
+                      href={brand.href}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors group/item"
+                      data-testid={`link-brand-${brand.initials.toLowerCase()}`}
+                    >
+                      <div className={`h-8 w-8 rounded-lg ${brand.color} flex items-center justify-center shrink-0`}>
+                        <span className="text-white text-[10px] font-bold">{brand.initials}</span>
+                      </div>
+                      <span className="text-sm font-medium text-gray-700 group-hover/item:text-gray-900">{brand.name}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
@@ -296,6 +328,35 @@ function Navbar() {
                       {l.label}
                     </a>
                   ))}
+                  {/* Our Brands accordion for mobile */}
+                  <div className="border-b pb-2">
+                    <button
+                      onClick={() => setBrandsOpen(!brandsOpen)}
+                      className="flex items-center justify-between w-full text-lg font-medium py-2"
+                      data-testid="button-mobile-brands"
+                    >
+                      {t("nav.ourBrands")}
+                      <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${brandsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    {brandsOpen && (
+                      <div className="pl-2 pb-2 space-y-1">
+                        {brands.map((brand) => (
+                          <a
+                            key={brand.name}
+                            href={brand.href}
+                            onClick={() => setOpen(false)}
+                            className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                            data-testid={`link-mobile-brand-${brand.initials.toLowerCase()}`}
+                          >
+                            <div className={`h-7 w-7 rounded-md ${brand.color} flex items-center justify-center shrink-0`}>
+                              <span className="text-white text-[9px] font-bold">{brand.initials}</span>
+                            </div>
+                            <span className="text-sm font-medium text-gray-700">{brand.name}</span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                   <div className="mt-4">
                     <WhatsAppCTA text={t("nav.bookDemo")} message="Hi, I want to book a free demo of the AI Pharmacy System." />
                   </div>
