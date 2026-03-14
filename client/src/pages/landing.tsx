@@ -983,21 +983,10 @@ function WhatsAppMarketingSection() {
                   <uc.icon className="h-5 w-5 text-white" />
                 </div>
 
-                {/* Text + preview bubble */}
+                {/* Text */}
                 <div className="flex-1 min-w-0">
                   <h3 className="font-bold text-foreground text-sm mb-0.5">{uc.title}</h3>
-                  <p className="text-muted-foreground text-[12px] mb-3 leading-relaxed">{uc.desc}</p>
-                  {/* Mini WhatsApp message preview */}
-                  <div className={`${uc.lightBg} ${uc.border} border rounded-xl rounded-tl-none px-3 py-2 inline-block max-w-full`}>
-                    <p className={`text-[11px] font-medium ${uc.textColor} leading-snug`}>{uc.preview}</p>
-                    <div className="flex items-center justify-end gap-1 mt-1">
-                      <span className="text-[9px] text-gray-400">just now</span>
-                      <svg className="h-[10px] w-[14px] text-[#53bdeb]" viewBox="0 0 16 11" fill="none">
-                        <path d="M11.071.653a.457.457 0 0 0-.304-.102.493.493 0 0 0-.381.178l-6.19 7.636-2.405-2.272a.463.463 0 0 0-.336-.136.47.47 0 0 0-.343.153l-.875.894a.518.518 0 0 0 .005.765l3.32 3.245c.095.093.218.15.352.15a.478.478 0 0 0 .37-.188l7.034-8.745a.52.52 0 0 0-.104-.721l-.143-.112z" fill="currentColor"/>
-                        <path d="M15.229.653a.457.457 0 0 0-.304-.102.493.493 0 0 0-.381.178l-6.19 7.636-1.2-1.134-.942 1.166 1.79 1.752c.095.093.218.15.352.15a.478.478 0 0 0 .37-.188l7.034-8.745a.52.52 0 0 0-.104-.721l-.143-.112-.282.12z" fill="currentColor"/>
-                      </svg>
-                    </div>
-                  </div>
+                  <p className="text-muted-foreground text-[12px] leading-relaxed">{uc.desc}</p>
                 </div>
               </motion.div>
             ))}
