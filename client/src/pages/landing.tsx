@@ -886,74 +886,170 @@ function WhatsAppPhoneMockup() {
 
 function WhatsAppMarketingSection() {
   const { t } = useLanguage();
-  const benefits = [
-    { icon: TrendingUp, text: t("whatsapp.b1"), color: "text-emerald-600", bg: "bg-emerald-100" },
-    { icon: Repeat, text: t("whatsapp.b2"), color: "text-purple-600", bg: "bg-purple-100" },
-    { icon: Zap, text: t("whatsapp.b3"), color: "text-amber-600", bg: "bg-amber-100" },
-    { icon: Smartphone, text: t("whatsapp.b4"), color: "text-violet-600", bg: "bg-violet-100" },
+
+  const features = [
+    {
+      icon: Tag,
+      emoji: "🎁",
+      title: t("whatsapp.float1"),
+      desc: t("whatsapp.f1desc"),
+      color: "from-emerald-500 to-green-600",
+      glow: "shadow-emerald-500/20",
+    },
+    {
+      icon: Bell,
+      emoji: "⏰",
+      title: t("whatsapp.float2"),
+      desc: t("whatsapp.f2desc"),
+      color: "from-amber-500 to-orange-500",
+      glow: "shadow-amber-500/20",
+    },
+    {
+      icon: Heart,
+      emoji: "💚",
+      title: t("whatsapp.float3"),
+      desc: t("whatsapp.f3desc"),
+      color: "from-pink-500 to-rose-500",
+      glow: "shadow-pink-500/20",
+    },
+    {
+      icon: Repeat,
+      emoji: "🔄",
+      title: t("whatsapp.float4"),
+      desc: t("whatsapp.f4desc"),
+      color: "from-violet-500 to-purple-600",
+      glow: "shadow-violet-500/20",
+    },
+  ];
+
+  const stats = [
+    { value: "3×", label: t("whatsapp.stat1") },
+    { value: "80%", label: t("whatsapp.stat2") },
+    { value: "100%", label: t("whatsapp.stat3") },
   ];
 
   return (
-    <section id="whatsapp" className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/40 to-white">
-      <div className="absolute top-24 right-[10%] w-[400px] h-[400px] bg-emerald-300/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-24 left-[5%] w-[350px] h-[350px] bg-green-300/10 rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-teal-200/8 rounded-full blur-[100px]" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section id="whatsapp" className="py-0 relative overflow-hidden">
+      {/* Top Wave */}
+      <div className="w-full overflow-hidden leading-[0] bg-white">
+        <svg viewBox="0 0 1440 60" className="block w-full" preserveAspectRatio="none" style={{ height: 48 }}>
+          <path d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z" fill="#064e3b" />
+        </svg>
+      </div>
+
+      {/* Dark Emerald Body */}
+      <div className="bg-[#064e3b] relative">
+        {/* Background glows */}
+        <div className="absolute top-0 left-[15%] w-[500px] h-[400px] bg-emerald-400/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] bg-green-400/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-teal-400/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+
+          {/* Header */}
           <motion.div
+            className="text-center mb-14"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: "-60px" }}
             variants={stagger}
           >
-            <motion.div variants={fadeInUp}>
-              <span className="inline-block mb-6 text-xs uppercase tracking-widest bg-emerald-50 text-emerald-600 px-4 py-1.5 rounded-full font-semibold" data-testid="badge-automation-suite">{t("whatsapp.badge")}</span>
+            <motion.div variants={fadeInUp} className="mb-4">
+              <span className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest" data-testid="badge-automation-suite">
+                <SiWhatsapp className="h-3.5 w-3.5" />
+                {t("whatsapp.badge")}
+              </span>
             </motion.div>
-            <motion.h2 variants={fadeInUp} className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 tracking-tight" data-testid="heading-whatsapp">
-              <span className="bg-gradient-to-r from-emerald-500 to-green-600 bg-clip-text text-transparent">{t("whatsapp.title")}
-</span>
+            <motion.h2 variants={fadeInUp} className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight" data-testid="heading-whatsapp">
+              {t("whatsapp.title")}
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-[600px]" data-testid="text-whatsapp-subtitle">
+            <motion.p variants={fadeInUp} className="text-emerald-200/80 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed" data-testid="text-whatsapp-subtitle">
               {t("whatsapp.subtitle")}
             </motion.p>
-            <motion.p variants={fadeInUp} className="text-sm text-muted-foreground mb-8 leading-relaxed max-w-lg">
-              {t("whatsapp.desc")}
-            </motion.p>
+          </motion.div>
 
-            <motion.div variants={fadeInUp} className="mb-10">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">{t("whatsapp.benefitsTitle")}</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {benefits.map((b, i) => (
-                  <div key={i} className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-2.5 border border-border/50 shadow-sm" data-testid={`text-whatsapp-benefit-${i}`}>
-                    <div className={`h-8 w-8 rounded-lg ${b.bg} flex items-center justify-center shrink-0`}>
-                      <b.icon className={`h-4 w-4 ${b.color}`} />
-                    </div>
-                    <span className="text-xs font-semibold leading-tight">{b.text}</span>
+          {/* Stats Row */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-14"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            {stats.map((s, i) => (
+              <motion.div key={i} variants={fadeInUp} className="text-center px-6 py-3 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm" data-testid={`stat-whatsapp-${i}`}>
+                <div className="text-3xl sm:text-4xl font-black text-white mb-1">{s.value}</div>
+                <div className="text-emerald-300/80 text-xs font-medium">{s.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Main Grid: Feature Cards + Phone Mockup */}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+            {/* Left: Feature Cards */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={stagger}
+              className="grid sm:grid-cols-2 gap-4"
+            >
+              {features.map((f, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeInUp}
+                  className={`group relative bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-all duration-300 hover:shadow-xl hover:${f.glow} cursor-default`}
+                  data-testid={`card-whatsapp-feature-${i}`}
+                >
+                  <div className={`h-11 w-11 rounded-xl bg-gradient-to-br ${f.color} flex items-center justify-center mb-4 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform duration-300`}>
+                    <f.icon className="h-5 w-5 text-white" />
                   </div>
-                ))}
+                  <h3 className="text-white font-bold text-sm mb-1.5">{f.title}</h3>
+                  <p className="text-emerald-200/60 text-[12px] leading-relaxed">{f.desc}</p>
+                </motion.div>
+              ))}
+
+              {/* CTA below cards */}
+              <motion.div variants={fadeInUp} className="sm:col-span-2 mt-2">
+                <Button
+                  size="lg"
+                  className="w-full bg-[#25D366] hover:bg-[#22c35e] text-white font-bold text-base shadow-2xl shadow-emerald-900/50 hover:scale-[1.02] transition-all duration-200 border-0 h-14"
+                  data-testid="button-start-automating"
+                  asChild
+                >
+                  <a href={getWhatsAppLink("Hi, I want to automate my pharmacy with WhatsApp Marketing.\nI'm interested in the WhatsApp automation features.\nPlease share the details.")} target="_blank" rel="noopener noreferrer">
+                    <SiWhatsapp className="h-5 w-5 mr-2.5" />
+                    {t("whatsapp.ctaButton")}
+                  </a>
+                </Button>
+                <p className="text-center text-emerald-300/50 text-[11px] mt-3 font-medium">{t("whatsapp.noApiNote")}</p>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Phone Mockup */}
+            <motion.div
+              className="flex justify-center lg:justify-end"
+              initial={{ opacity: 0, y: 40, scale: 0.93 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <div className="relative">
+                {/* Glow ring behind phone */}
+                <div className="absolute inset-0 -m-8 bg-emerald-400/10 rounded-full blur-3xl" />
+                <WhatsAppPhoneMockup />
               </div>
             </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700:bg-emerald-600 text-white font-semibold px-8 hover:scale-105 transition-all duration-200 shadow-lg shadow-emerald-500/20" data-testid="button-start-automating" asChild>
-                <a href={getWhatsAppLink("Hi, I want to automate my pharmacy with WhatsApp Marketing.\nI'm interested in the WhatsApp automation features.\nPlease share the details.")} target="_blank" rel="noopener noreferrer">
-                  <SiWhatsapp className="h-4 w-4 mr-2" />
-                  {t("whatsapp.ctaButton")}
-                </a>
-              </Button>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="flex justify-center"
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <WhatsAppPhoneMockup />
-          </motion.div>
+          </div>
         </div>
+      </div>
+
+      {/* Bottom Wave */}
+      <div className="w-full overflow-hidden leading-[0] bg-white">
+        <svg viewBox="0 0 1440 60" className="block w-full" preserveAspectRatio="none" style={{ height: 48 }}>
+          <path d="M0,60 C360,0 1080,0 1440,60 L1440,0 L0,0 Z" fill="#064e3b" />
+        </svg>
       </div>
     </section>
   );
