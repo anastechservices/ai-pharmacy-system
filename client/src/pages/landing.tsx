@@ -732,14 +732,36 @@ Please share details." />
 
 function WhatsAppPhoneMockup() {
   const chatMessages = [
-    { type: "received", text: "Assalam o Alaikum Ahmed! 👋\nCity Pharmacy mein aapka khairmaqdim hai.\nAapki khareedari Bill #1247 complete hogayi. Shukriya!", time: "10:28 AM" },
-    { type: "sent", text: "Shukriya! Panadol kitni bar leni hai?", time: "10:31 AM" },
-    { type: "received", text: "Panadol: 1 tablet har 8 ghante baad khaana khane ke baad lein. Zaroorat ho to 6 ghante par bhi le sakte hain.", time: "10:32 AM" },
-    { type: "received", text: "🎁 SPECIAL OFFER\nIs hafte tamam Vitamins & Supplements par 20% OFF!\nKhareednay ke liye is message ko counter par dikhayein.\n\nValid: Today only", time: "11:00 AM", isPromo: true },
-    { type: "sent", text: "Bohat acha! Main kal aa jaunga 👍", time: "11:04 AM" },
-    { type: "received", text: "⏰ Yaad-Dehani\nAhmed bhai, aapki Amlodipine 5mg ki refill 3 din mein due hai.\nAbhi order karein ya pharmacy visit karein!", time: "2:00 PM", isReminder: true },
-    { type: "sent", text: "Theek hai, kal lene aata hun", time: "2:05 PM" },
-    { type: "received", text: "Bahut shukriya Ahmed bhai! Aapka intezaar rahega. Sehat mand rahein 🙏", time: "2:06 PM" },
+    {
+      type: "received",
+      text: "Hello Ahmed! 👋 Welcome to City Pharmacy.\n\nYour order #1247 has been confirmed. Here is your prescription summary:\n• Amlodipine 5mg — 30 tabs\n• Metformin 500mg — 60 tabs\n• Panadol 500mg — 20 tabs\n\nTotal: PKR 1,850 ✅",
+      time: "10:28 AM",
+    },
+    { type: "sent", text: "Thank you! Can you share the dosage schedule for all three?", time: "10:30 AM" },
+    {
+      type: "received",
+      text: "💊 Your Dosage Schedule:\n\n1️⃣ Amlodipine 5mg\n   → 1 tablet once daily (morning)\n   → Take with or without food\n\n2️⃣ Metformin 500mg\n   → 1 tablet twice daily\n   → Always take WITH meals\n\n3️⃣ Panadol 500mg\n   → 1–2 tablets every 6–8 hrs\n   → Max 8 tablets per day\n\nDo not skip doses. Contact us for any side effects.",
+      time: "10:32 AM",
+    },
+    {
+      type: "received",
+      text: "🎁 EXCLUSIVE OFFER\nThis week only — 20% OFF on all Vitamins & Supplements!\n\nShow this message at the counter to avail.\nValid until Sunday, 11:59 PM.",
+      time: "11:00 AM",
+      isPromo: true,
+    },
+    { type: "sent", text: "Great! I'll visit tomorrow for the vitamins 👍", time: "11:03 AM" },
+    {
+      type: "received",
+      text: "⏰ Refill Reminder\nDear Ahmed, your Amlodipine 5mg supply is due in 3 days.\n\nReply YES to reserve your refill, or visit us anytime.",
+      time: "2:00 PM",
+      isReminder: true,
+    },
+    { type: "sent", text: "YES please reserve it for me", time: "2:04 PM" },
+    {
+      type: "received",
+      text: "✅ Done! Your Amlodipine refill is reserved.\n\nWe'll have it ready when you arrive. Stay healthy! 🙏",
+      time: "2:05 PM",
+    },
   ];
 
   return (
@@ -748,17 +770,29 @@ function WhatsAppPhoneMockup() {
         <div className="relative bg-gray-900 pt-2 pb-0">
           <div className="mx-auto w-28 h-6 bg-gray-800 rounded-b-xl" />
           <div className="flex items-center justify-between px-4 pt-1 pb-0.5">
-            <span className="text-[9px] text-gray-400 font-medium">9:41</span>
-            <div className="flex items-center gap-1">
-              <div className="flex gap-[2px]">
-                <div className="w-[3px] h-[6px] bg-gray-400 rounded-[1px]" />
-                <div className="w-[3px] h-[8px] bg-gray-400 rounded-[1px]" />
-                <div className="w-[3px] h-[10px] bg-gray-400 rounded-[1px]" />
-                <div className="w-[3px] h-[12px] bg-gray-500 rounded-[1px]" />
+            {/* Left: time + carrier */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[9px] text-white font-semibold">9:41</span>
+              <span className="text-[8px] text-gray-400 font-medium">4G</span>
+            </div>
+            {/* Right: signal + wifi + battery */}
+            <div className="flex items-center gap-1.5">
+              {/* Signal bars — bottom aligned */}
+              <div className="flex items-end gap-[2px] h-[12px]">
+                <div className="w-[3px] h-[4px] bg-white rounded-[1px]" />
+                <div className="w-[3px] h-[6px] bg-white rounded-[1px]" />
+                <div className="w-[3px] h-[8px] bg-white rounded-[1px]" />
+                <div className="w-[3px] h-[10px] bg-white rounded-[1px]" />
+                <div className="w-[3px] h-[12px] bg-white rounded-[1px]" />
               </div>
-              <div className="w-5 h-[9px] border border-gray-400 rounded-[2px] relative ml-0.5">
-                <div className="absolute inset-[1px] right-[3px] bg-gray-400 rounded-[1px]" />
-                <div className="absolute right-[-2px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-gray-400 rounded-r-[1px]" />
+              {/* WiFi icon */}
+              <svg className="h-[10px] w-[13px] text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1.41 6.41C4.23 3.6 8.05 2 12 2s7.77 1.6 10.59 4.41l-2.12 2.12C18.26 6.32 15.22 5 12 5S5.74 6.32 3.53 8.53L1.41 6.41zm4.24 4.25C7.28 9.04 9.56 8 12 8s4.72 1.04 6.36 2.66l-2.12 2.12C15.12 11.66 13.62 11 12 11s-3.12.66-4.24 1.78l-2.11-2.12zm4.24 4.25C10.42 14.18 11.18 14 12 14s1.58.18 2.11.91l-2.11 2.1-2.11-2.1z"/>
+              </svg>
+              {/* Battery */}
+              <div className="w-[20px] h-[10px] border border-white/70 rounded-[2px] relative">
+                <div className="absolute inset-[1.5px] right-[4px] bg-white rounded-[1px]" />
+                <div className="absolute right-[-3px] top-1/2 -translate-y-1/2 w-[2.5px] h-[5px] bg-white/60 rounded-r-[1px]" />
               </div>
             </div>
           </div>
