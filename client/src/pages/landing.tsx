@@ -320,11 +320,6 @@ function Navbar() {
               </button>
               <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-black/10 overflow-hidden w-[280px]">
-                  {/* Header */}
-                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-slate-50 border-b border-gray-100">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Anas Tech Group</p>
-                  </div>
-                  {/* Brand list */}
                   <div className="p-2">
                     {brands.map((brand) => (
                       <a
