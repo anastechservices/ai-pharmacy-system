@@ -259,10 +259,10 @@ function Navbar() {
   ];
 
   const brands = [
-    { name: "Anas Tech Services", initials: "AT", color: "bg-violet-600", href: "#" },
-    { name: "Novinate", initials: "NV", color: "bg-emerald-600", href: "#" },
-    { name: "Digital Brandfly", initials: "DB", color: "bg-blue-600", href: "#" },
-    { name: "Digital Storeify", initials: "DS", color: "bg-amber-600", href: "#" },
+    { name: t("nav.brandAnasTech"), initials: "AT", color: "bg-violet-600", href: "#" },
+    { name: t("nav.brandNovinate"), initials: "NV", color: "bg-emerald-600", href: "#" },
+    { name: t("nav.brandDigitalBrandfly"), initials: "DB", color: "bg-blue-600", href: "#" },
+    { name: t("nav.brandDigitalStoreify"), initials: "DS", color: "bg-amber-600", href: "#" },
   ];
 
   return (
