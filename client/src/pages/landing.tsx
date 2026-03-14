@@ -78,6 +78,7 @@ import {
   RotateCcw,
   MessageCircle,
   ChevronDown,
+  ExternalLink,
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import atsLogoPath from "@assets/1-_White_-_2D_1772477289066.jpg";
@@ -259,10 +260,38 @@ function Navbar() {
   ];
 
   const brands = [
-    { name: t("nav.brandAnasTech"), initials: "AT", color: "bg-violet-600", href: "#" },
-    { name: t("nav.brandNovinate"), initials: "NV", color: "bg-emerald-600", href: "#" },
-    { name: t("nav.brandDigitalBrandfly"), initials: "DB", color: "bg-blue-600", href: "#" },
-    { name: t("nav.brandDigitalStoreify"), initials: "DS", color: "bg-amber-600", href: "#" },
+    {
+      name: t("nav.brandAnasTech"),
+      initials: "AT",
+      gradient: "from-violet-600 to-purple-700",
+      domain: "anastechservices.com",
+      href: "https://anastechservices.com",
+      desc: "Digital Solutions & Tech Services",
+    },
+    {
+      name: t("nav.brandDigitalBrandfly"),
+      initials: "DB",
+      gradient: "from-blue-500 to-indigo-600",
+      domain: "digitalbrandfly.com",
+      href: "https://digitalbrandfly.com",
+      desc: "Branding & Creative Agency",
+    },
+    {
+      name: t("nav.brandNovinate"),
+      initials: "NV",
+      gradient: "from-emerald-500 to-teal-600",
+      domain: "novinate.com",
+      href: "https://novinate.com",
+      desc: "Innovation & Product Studio",
+    },
+    {
+      name: t("nav.brandDigitalStoreify"),
+      initials: "DS",
+      gradient: "from-amber-500 to-orange-600",
+      domain: "digitalstoreify.com",
+      href: "https://digitalstoreify.com",
+      desc: "E-Commerce & Online Stores",
+    },
   ];
 
   return (
@@ -289,21 +318,34 @@ function Navbar() {
                 {t("nav.ourBrands")}
                 <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
               </button>
-              <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-white rounded-xl border shadow-lg shadow-black/8 p-2 min-w-[220px]">
-                  {brands.map((brand) => (
-                    <a
-                      key={brand.name}
-                      href={brand.href}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors group/item"
-                      data-testid={`link-brand-${brand.initials.toLowerCase()}`}
-                    >
-                      <div className={`h-8 w-8 rounded-lg ${brand.color} flex items-center justify-center shrink-0`}>
-                        <span className="text-white text-[10px] font-bold">{brand.initials}</span>
-                      </div>
-                      <span className="text-sm font-medium text-gray-700 group-hover/item:text-gray-900">{brand.name}</span>
-                    </a>
-                  ))}
+              <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-black/10 overflow-hidden w-[280px]">
+                  {/* Header */}
+                  <div className="px-4 py-3 bg-gradient-to-r from-gray-50 to-slate-50 border-b border-gray-100">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Anas Tech Group</p>
+                  </div>
+                  {/* Brand list */}
+                  <div className="p-2">
+                    {brands.map((brand) => (
+                      <a
+                        key={brand.name}
+                        href={brand.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-all duration-150 group/item"
+                        data-testid={`link-brand-${brand.initials.toLowerCase()}`}
+                      >
+                        <div className={`h-9 w-9 rounded-xl bg-gradient-to-br ${brand.gradient} flex items-center justify-center shrink-0 shadow-sm`}>
+                          <span className="text-white text-[11px] font-black tracking-tight">{brand.initials}</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[13px] font-semibold text-gray-800 leading-tight group-hover/item:text-gray-900">{brand.name}</p>
+                          <p className="text-[11px] text-gray-400 leading-tight mt-0.5">{brand.domain}</p>
+                        </div>
+                        <ExternalLink className="h-3.5 w-3.5 text-gray-300 group-hover/item:text-gray-500 transition-colors shrink-0" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -339,19 +381,25 @@ function Navbar() {
                       <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${brandsOpen ? "rotate-180" : ""}`} />
                     </button>
                     {brandsOpen && (
-                      <div className="pl-2 pb-2 space-y-1">
+                      <div className="pb-1 space-y-1">
                         {brands.map((brand) => (
                           <a
                             key={brand.name}
                             href={brand.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             onClick={() => setOpen(false)}
-                            className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="flex items-center gap-3 px-2 py-2.5 rounded-xl hover:bg-gray-50 transition-colors group/mb"
                             data-testid={`link-mobile-brand-${brand.initials.toLowerCase()}`}
                           >
-                            <div className={`h-7 w-7 rounded-md ${brand.color} flex items-center justify-center shrink-0`}>
-                              <span className="text-white text-[9px] font-bold">{brand.initials}</span>
+                            <div className={`h-8 w-8 rounded-xl bg-gradient-to-br ${brand.gradient} flex items-center justify-center shrink-0 shadow-sm`}>
+                              <span className="text-white text-[10px] font-black">{brand.initials}</span>
                             </div>
-                            <span className="text-sm font-medium text-gray-700">{brand.name}</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-gray-800 leading-tight">{brand.name}</p>
+                              <p className="text-[11px] text-gray-400 leading-tight">{brand.domain}</p>
+                            </div>
+                            <ExternalLink className="h-3 w-3 text-gray-300 group-hover/mb:text-gray-500 transition-colors shrink-0" />
                           </a>
                         ))}
                       </div>
