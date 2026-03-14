@@ -51,6 +51,10 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.faq": "FAQ",
     "nav.contact": "Contact",
     "nav.ourBrands": "Our Brands",
+    "nav.brandAnasTech": "Anas Tech Services",
+    "nav.brandNovinate": "Novinate",
+    "nav.brandDigitalBrandfly": "Digital Brandfly",
+    "nav.brandDigitalStoreify": "Digital Storeify",
     "nav.bookDemo": "Book Free Demo",
 
     "hero.badge": "AI-Powered Cloud Pharmacy System",
@@ -398,6 +402,10 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.faq": "Sawalaat",
     "nav.contact": "Rabta",
     "nav.ourBrands": "Humari Brands",
+    "nav.brandAnasTech": "Anas Tech Services",
+    "nav.brandNovinate": "Novinate",
+    "nav.brandDigitalBrandfly": "Digital Brandfly",
+    "nav.brandDigitalStoreify": "Digital Storeify",
     "nav.bookDemo": "Free Demo Book Karein",
 
     "hero.badge": "AI-Powered Cloud Pharmacy System",
@@ -745,6 +753,10 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.faq": "الأسئلة الشائعة",
     "nav.contact": "اتصل بنا",
     "nav.ourBrands": "علاماتنا التجارية",
+    "nav.brandAnasTech": "Anas Tech Services",
+    "nav.brandNovinate": "Novinate",
+    "nav.brandDigitalBrandfly": "Digital Brandfly",
+    "nav.brandDigitalStoreify": "Digital Storeify",
     "nav.bookDemo": "احجز عرض مجاني",
 
     "hero.badge": "نظام صيدلية سحابي بالذكاء الاصطناعي",
