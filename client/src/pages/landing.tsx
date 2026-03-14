@@ -2469,6 +2469,16 @@ function FooterSection() {
                 Explore Our Products
                 <ExternalLink className="h-3 w-3" />
               </a>
+              <a
+                href="https://anastechservices.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-violet-600 font-medium hover:text-violet-700 transition-colors"
+                data-testid="link-footer-anastech"
+              >
+                Explore Our Services
+                <ExternalLink className="h-3 w-3" />
+              </a>
             </div>
           </div>
 
