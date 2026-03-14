@@ -731,14 +731,15 @@ Please share details." />
 }
 
 function WhatsAppPhoneMockup() {
-  const { t } = useLanguage();
   const chatMessages = [
-    { type: "received", text: "Assalam o Alaikum! City Pharmacy mein khush amdeed. Apki khareedari ka shukriya! Bill #1247", time: "10:30 AM" },
-    { type: "sent", text: "Shukriya! Dawai kab leni hai?", time: "10:32 AM" },
-    { type: "received", text: "Panadol: 1 tablet har 8 ghante baad khana khane ke baad.\nHum apko refill ka waqt yaad karwa dein ge!", time: "10:33 AM" },
-    { type: "received", text: "FLASH SALE! Is hafte tamam vitamins par 15% OFF. Ye message counter par dikhayein.", time: "11:00 AM", isPromo: true },
-    { type: "sent", text: "Bohat acha! Kal aata hun", time: "11:02 AM" },
-    { type: "received", text: "Yaad-dehani: Apki Amlodipine ki refill 3 din mein due hai. Abhi order karein ya pharmacy visit karein!", time: "2:00 PM", isReminder: true },
+    { type: "received", text: "Assalam o Alaikum Ahmed! 👋\nCity Pharmacy mein aapka khairmaqdim hai.\nAapki khareedari Bill #1247 complete hogayi. Shukriya!", time: "10:28 AM" },
+    { type: "sent", text: "Shukriya! Panadol kitni bar leni hai?", time: "10:31 AM" },
+    { type: "received", text: "Panadol: 1 tablet har 8 ghante baad khaana khane ke baad lein. Zaroorat ho to 6 ghante par bhi le sakte hain.", time: "10:32 AM" },
+    { type: "received", text: "🎁 SPECIAL OFFER\nIs hafte tamam Vitamins & Supplements par 20% OFF!\nKhareednay ke liye is message ko counter par dikhayein.\n\nValid: Today only", time: "11:00 AM", isPromo: true },
+    { type: "sent", text: "Bohat acha! Main kal aa jaunga 👍", time: "11:04 AM" },
+    { type: "received", text: "⏰ Yaad-Dehani\nAhmed bhai, aapki Amlodipine 5mg ki refill 3 din mein due hai.\nAbhi order karein ya pharmacy visit karein!", time: "2:00 PM", isReminder: true },
+    { type: "sent", text: "Theek hai, kal lene aata hun", time: "2:05 PM" },
+    { type: "received", text: "Bahut shukriya Ahmed bhai! Aapka intezaar rahega. Sehat mand rahein 🙏", time: "2:06 PM" },
   ];
 
   return (
@@ -845,41 +846,6 @@ function WhatsAppPhoneMockup() {
         </div>
       </div>
 
-      <div className="absolute -top-3 -right-3 animate-float-1">
-        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-0">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-            <Tag className="h-3.5 w-3.5 text-emerald-500" />
-          </div>
-          <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float1")}</span>
-        </div>
-      </div>
-
-      <div className="absolute top-24 -left-4 sm:-left-8 animate-float-2">
-        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-1">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-            <Bell className="h-3.5 w-3.5 text-emerald-500" />
-          </div>
-          <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float2")}</span>
-        </div>
-      </div>
-
-      <div className="absolute bottom-28 -right-4 sm:-right-6 animate-float-3">
-        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-2">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-            <Heart className="h-3.5 w-3.5 text-emerald-500" />
-          </div>
-          <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float3")}</span>
-        </div>
-      </div>
-
-      <div className="absolute bottom-10 -left-2 sm:-left-6 animate-float-4">
-        <div className="bg-white rounded-xl shadow-lg border border-emerald-100 px-3 py-2 flex items-center gap-2" data-testid="card-whatsapp-feature-3">
-          <div className="h-7 w-7 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-            <MessageSquare className="h-3.5 w-3.5 text-emerald-500" />
-          </div>
-          <span className="text-[10px] font-semibold whitespace-nowrap">{t("whatsapp.float4")}</span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -1033,11 +999,6 @@ function WhatsAppMarketingSection() {
             <div className="relative">
               <div className="absolute inset-0 -m-10 bg-[#25D366]/10 rounded-full blur-3xl" />
               <WhatsAppPhoneMockup />
-              {/* "Automated" badge */}
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#25D366] text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap flex items-center gap-1.5 z-10">
-                <div className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                Live Automation Active
-              </div>
             </div>
           </motion.div>
         </div>
