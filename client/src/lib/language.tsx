@@ -50,6 +50,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.demo": "Video Demo",
     "nav.faq": "FAQ",
     "nav.contact": "Contact",
+    "nav.ourBrands": "Our Brands",
     "nav.bookDemo": "Book Free Demo",
 
     "hero.badge": "AI-Powered Cloud Pharmacy System",
@@ -396,6 +397,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.demo": "Video Demo",
     "nav.faq": "Sawalaat",
     "nav.contact": "Rabta",
+    "nav.ourBrands": "Humari Brands",
     "nav.bookDemo": "Free Demo Book Karein",
 
     "hero.badge": "AI-Powered Cloud Pharmacy System",
@@ -742,6 +744,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.demo": "فيديو تجريبي",
     "nav.faq": "الأسئلة الشائعة",
     "nav.contact": "اتصل بنا",
+    "nav.ourBrands": "علاماتنا التجارية",
     "nav.bookDemo": "احجز عرض مجاني",
 
     "hero.badge": "نظام صيدلية سحابي بالذكاء الاصطناعي",
