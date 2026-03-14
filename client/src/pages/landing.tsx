@@ -2459,6 +2459,16 @@ function FooterSection() {
               ].map((link) => (
                 <a key={link.label} href={link.href} className="block text-sm text-muted-foreground">{link.label}</a>
               ))}
+              <a
+                href="https://novinate.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-emerald-600 font-medium hover:text-emerald-700 transition-colors"
+                data-testid="link-footer-novinate"
+              >
+                Explore Our Products
+                <ExternalLink className="h-3 w-3" />
+              </a>
             </div>
           </div>
 
